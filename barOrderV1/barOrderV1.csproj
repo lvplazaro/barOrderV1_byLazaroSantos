@@ -69,6 +69,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="View\EstoqueView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\PaginaInicialView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

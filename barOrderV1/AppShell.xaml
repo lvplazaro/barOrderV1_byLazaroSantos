@@ -13,4 +13,11 @@
         ContentTemplate="{DataTemplate local:PaginaInicialView}"
         Route="MainPage" />
 
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Estoque"
+                      ContentTemplate="{DataTemplate local:EstoqueView}"
+                      Route="EstoqueView"/>
+
+    </FlyoutItem>
+
 </Shell>
