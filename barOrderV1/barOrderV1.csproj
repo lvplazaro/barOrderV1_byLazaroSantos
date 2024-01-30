@@ -69,7 +69,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="View\ComandasFechadasView.xaml.cs">
+	    <DependentUpon>ComandasFechadasView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="View\EstoqueView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\ComandasFechadasView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\PaginaInicialView.xaml">

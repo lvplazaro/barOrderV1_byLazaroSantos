@@ -14,8 +14,7 @@ namespace barOrderV1.Model.Enums
         Refrigerantes = 3,
         Vinho = 4,
         LitroDestilado = 5,
-        Agua = 6,
-        Suco = 7,
-        Outros = 8,
+        Suco = 6,
+        Outros = 7,
     }
 }

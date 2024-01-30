@@ -8,16 +8,25 @@
     Shell.FlyoutBehavior="Flyout"
     Title="barOrder">
 
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout>
+            <Image Source="dotnet_bot.png"/>
+            <Label Text="barOrder" HorizontalTextAlignment="Center"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
     <ShellContent
-        Title="Home"
+        Title="Comandas Abertas"
         ContentTemplate="{DataTemplate local:PaginaInicialView}"
         Route="MainPage" />
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Estoque"
-                      ContentTemplate="{DataTemplate local:EstoqueView}"
-                      Route="EstoqueView"/>
+    <ShellContent Title="Comandas Fechadas"
+      ContentTemplate="{DataTemplate local:ComandasFechadasView}"
+      Route="ComandasFechadasView"/>
 
-    </FlyoutItem>
+    <ShellContent Title="Estoque"
+              ContentTemplate="{DataTemplate local:EstoqueView}"
+              Route="EstoqueView"/>
+
 
 </Shell>

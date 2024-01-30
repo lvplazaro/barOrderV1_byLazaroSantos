@@ -2,11 +2,84 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="barOrderV1.View.EstoqueView"
-             Title="EstoqueView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Pagina de estoque"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Estoque">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Celula 1 -->
+        <Frame Grid.Row="0" Grid.Column="0" Margin="5" BackgroundColor="LightGray">
+            <StackLayout>
+                <Image Source="cerveja_lata.jpg" Aspect="AspectFill" HeightRequest="100"/>
+                <Label Text="Cerveja Lata" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Celula 2 -->
+        <Frame Grid.Row="0" Grid.Column="1" Margin="5" BackgroundColor="LightGray">
+            <StackLayout>
+                <Image Source="cerveja_garrafa.jpg" Aspect="AspectFill" HeightRequest="100"/>
+                <Label Text="Cerveja Garrafa" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Celula 3 -->
+        <Frame Grid.Row="1" Grid.Column="0" Margin="5" BackgroundColor="LightGray">
+            <StackLayout>
+                <Image Source="bebida_dose.jpg" Aspect="AspectFill" HeightRequest="100"/>
+                <Label Text="Doses" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Celula 4 -->
+        <Frame Grid.Row="1" Grid.Column="1" Margin="5" BackgroundColor="LightGray">
+            <StackLayout>
+                <Image Source="refrigerante.jpg" Aspect="AspectFill" HeightRequest="100"/>
+                <Label Text="Refrigerantes" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Celula 5 -->
+        <Frame Grid.Row="2" Grid.Column="0" Margin="5" BackgroundColor="LightGray">
+            <StackLayout>
+                <Image Source="vinho.jpg" Aspect="AspectFill" HeightRequest="100"/>
+                <Label Text="Vinhos" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Celula 6 -->
+        <Frame Grid.Row="2" Grid.Column="1" Margin="5" BackgroundColor="LightGray">
+            <StackLayout>
+                <Image Source="litro_destilado.jpg" Aspect="AspectFill" HeightRequest="100"/>
+                <Label Text="Litros" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Celula 7 -->
+        <Frame Grid.Row="3" Grid.Column="0" Margin="5" BackgroundColor="LightGray">
+            <StackLayout>
+                <Image Source="suco.jpg" Aspect="AspectFill" HeightRequest="100"/>
+                <Label Text="Sucos" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Celula 8 -->
+        <Frame Grid.Row="3" Grid.Column="1" Margin="5" BackgroundColor="LightGray">
+            <StackLayout>
+                <Image Source="outros.jpg" Aspect="AspectFill" HeightRequest="100"/>
+                <Label Text="outros" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </Frame>
+    </Grid>
+
 </ContentPage>

@@ -17,8 +17,8 @@ namespace barOrderV1.ViewModel
             {
                 new ComandaModel{ Id = 1,
                                   Nome = "Pintinho",
-                                  DataAbertura = DateTime.Now,
-                                  Total = 00.00,
+                                  DataAbertura = new DateTime(2024, 1, 27, 10, 30, 0),
+                                  Total = 20.00,
                                   FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
                                   },
                 new ComandaModel{ Id = 2,

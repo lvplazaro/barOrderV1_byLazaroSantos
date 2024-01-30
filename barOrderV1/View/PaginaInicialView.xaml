@@ -3,40 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:barOrderV1.ViewModel"
              x:Class="barOrderV1.View.PaginaInicialView"
-             Title="PaginaInicialView">
-    
-    <VerticalStackLayout>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="9*" />
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
+             Title="Comandas">
 
-            <StackLayout Grid.Row="0">
-                <CollectionView x:Name="Comandas" ItemsSource="{Binding Comandas}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Frame Grid.Column="0" BorderColor="Black" HasShadow="True" Padding="10" Margin="5" BackgroundColor="Yellow">
-                                    <Grid Padding="20" ColumnSpacing="20">
-                                        <Label Text="{Binding Nome}" TextColor="Blue" FontSize="Medium"/>
-                                    </Grid>
-                                </Frame>
 
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <SearchBar Grid.Row="0" HorizontalOptions="FillAndExpand" Placeholder="Digite o nome da comanda ..."/>
 
-            <StackLayout Grid.Row="1" BackgroundColor="Yellow">
-                <Label Text="Adicionar" VerticalOptions="Center"
-                                HorizontalOptions="Center"/>
-            </StackLayout>
-        </Grid>
-    </VerticalStackLayout>
+
+        <CollectionView x:Name="Comandas" ItemsSource="{Binding Comandas}" Grid.Row="1">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Black" HasShadow="True" Padding="15" Margin="10" BackgroundColor="Yellow" HeightRequest="150" WidthRequest="190">
+                        <StackLayout>
+                            <Label Text="{Binding Nome}" TextColor="Blue" FontSize="Medium" LineBreakMode="NoWrap" HorizontalOptions="Center"/>
+                            <FlexLayout Direction="Column">
+                                <Label Text="{Binding DataAbertura, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="Blue" FontSize="Small"/>
+                                <Label Text="{Binding Total, StringFormat='Total: {0:N2}'}" TextColor="Blue" FontSize="Small"/>
+                            </FlexLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+       
+
+        <StackLayout  Grid.Row="2" Margin="0,0,0,5">
+            <Frame BorderColor="Black" HasShadow="True" Padding="10" Margin="5" BackgroundColor="Yellow">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                    <!-- Imagem -->
+                    <Image Source="plus.png" 
+                   Aspect="AspectFit" 
+                   HeightRequest="25" 
+                   WidthRequest="25"/>
+
+                    <!-- Texto -->
+                    <Label Text="Adicione novas comandas aqui" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+
+        
+    </Grid>
+
 </ContentPage>
