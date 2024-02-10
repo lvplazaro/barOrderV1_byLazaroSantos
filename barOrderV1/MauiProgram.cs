@@ -1,4 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui;
+using barOrderV1.View;
+using barOrderV1.ViewModel;
 
 namespace barOrderV1
 {
@@ -15,11 +19,22 @@ namespace barOrderV1
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<PaginaInicialView>();
+            builder.Services.AddSingleton<PaginaInicialViewModel>();
+
+            builder.Services.AddTransient<EstoqueDetailsView>();
+            builder.Services.AddTransient<EstoqueDetailsViewModel>();
+
+
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
         }
+
+        
     }
+
 }

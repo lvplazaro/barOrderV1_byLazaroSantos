@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace barOrderV1.Model
 {
-    internal class ProdutoModel
+    public class ProdutoModel
     {
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -17,4 +17,6 @@ namespace barOrderV1.Model
         public int QuantidadeCritica { get; set; }
         public DateTime HoraAdicao { get; set; }
     }
+
+
 }

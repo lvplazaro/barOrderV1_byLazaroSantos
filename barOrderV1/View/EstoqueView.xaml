@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:barOrderV1.Model.Enums"
              x:Class="barOrderV1.View.EstoqueView"
+             
              Title="Estoque">
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,24 +20,49 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+
+
+
+
         <!-- Celula 1 -->
         <Frame Grid.Row="0" Grid.Column="0" Margin="5" BackgroundColor="LightGray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer 
+                    Command="{Binding IrParaItensCommand}"
+                     CommandParameter="{x:Static local:CategoriaProduto.CervejaLata}" />
+            </Frame.GestureRecognizers>
             <StackLayout>
                 <Image Source="cerveja_lata.jpg" Aspect="AspectFill" HeightRequest="100"/>
                 <Label Text="Cerveja Lata" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
             </StackLayout>
         </Frame>
 
+
         <!-- Celula 2 -->
         <Frame Grid.Row="0" Grid.Column="1" Margin="5" BackgroundColor="LightGray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer 
+                   Command="{Binding IrParaItensCommand}"
+                    CommandParameter="{x:Static local:CategoriaProduto.CervejaGarrafa}" />
+            </Frame.GestureRecognizers>
             <StackLayout>
                 <Image Source="cerveja_garrafa.jpg" Aspect="AspectFill" HeightRequest="100"/>
                 <Label Text="Cerveja Garrafa" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
             </StackLayout>
         </Frame>
 
+
+
+
+
+
         <!-- Celula 3 -->
         <Frame Grid.Row="1" Grid.Column="0" Margin="5" BackgroundColor="LightGray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer 
+                    Command="{Binding IrParaItensCommand}"
+                    CommandParameter="{x:Static local:CategoriaProduto.BebidasDose}" />
+            </Frame.GestureRecognizers>
             <StackLayout>
                 <Image Source="bebida_dose.jpg" Aspect="AspectFill" HeightRequest="100"/>
                 <Label Text="Doses" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -43,6 +71,11 @@
 
         <!-- Celula 4 -->
         <Frame Grid.Row="1" Grid.Column="1" Margin="5" BackgroundColor="LightGray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer 
+                     Command="{Binding IrParaItensCommand}"
+                     CommandParameter="{x:Static local:CategoriaProduto.Refrigerantes}" />
+            </Frame.GestureRecognizers>
             <StackLayout>
                 <Image Source="refrigerante.jpg" Aspect="AspectFill" HeightRequest="100"/>
                 <Label Text="Refrigerantes" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -51,6 +84,11 @@
 
         <!-- Celula 5 -->
         <Frame Grid.Row="2" Grid.Column="0" Margin="5" BackgroundColor="LightGray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer 
+                     Command="{Binding IrParaItensCommand}"
+                     CommandParameter="{x:Static local:CategoriaProduto.Vinho}" />
+            </Frame.GestureRecognizers>
             <StackLayout>
                 <Image Source="vinho.jpg" Aspect="AspectFill" HeightRequest="100"/>
                 <Label Text="Vinhos" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -59,6 +97,11 @@
 
         <!-- Celula 6 -->
         <Frame Grid.Row="2" Grid.Column="1" Margin="5" BackgroundColor="LightGray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer 
+                    Command="{Binding IrParaItensCommand}"
+                    CommandParameter="{x:Static local:CategoriaProduto.LitroDestilado}" />
+            </Frame.GestureRecognizers>
             <StackLayout>
                 <Image Source="litro_destilado.jpg" Aspect="AspectFill" HeightRequest="100"/>
                 <Label Text="Litros" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -67,6 +110,11 @@
 
         <!-- Celula 7 -->
         <Frame Grid.Row="3" Grid.Column="0" Margin="5" BackgroundColor="LightGray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer 
+                    Command="{Binding IrParaItensCommand}"
+                    CommandParameter="{x:Static local:CategoriaProduto.Suco}" />
+            </Frame.GestureRecognizers>
             <StackLayout>
                 <Image Source="suco.jpg" Aspect="AspectFill" HeightRequest="100"/>
                 <Label Text="Sucos" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -75,6 +123,11 @@
 
         <!-- Celula 8 -->
         <Frame Grid.Row="3" Grid.Column="1" Margin="5" BackgroundColor="LightGray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer 
+                     Command="{Binding IrParaItensCommand}"
+                     CommandParameter="{x:Static local:CategoriaProduto.Outros}" />
+            </Frame.GestureRecognizers>
             <StackLayout>
                 <Image Source="outros.jpg" Aspect="AspectFill" HeightRequest="100"/>
                 <Label Text="outros" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
