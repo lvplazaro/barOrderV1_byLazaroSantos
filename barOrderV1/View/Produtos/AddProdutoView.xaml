@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="barOrderV1.View.AddProdutoView"
+             xmlns:model="clr-namespace:barOrderV1.ViewModel"
+             x:DataType="model:AddProdutoViewModel"
+             >
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label Text="Adicionar Produtos" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+
+    <VerticalStackLayout>
+
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Label Text="Nome" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange" />
+            <Entry Placeholder="Informe o nome do produto" x:Name="NomeEntry" Text="{Binding Nome, Mode=TwoWay}" />
+
+            <Label Text="Preço" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange"/>
+            <Entry Placeholder="Informe o preço do produto" x:Name="PreçoEntry" Text="{Binding Preco,Mode=TwoWay}" />
+
+            <Label Text="Categoria do produto" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange"/>
+            <Picker Title="Categoria" x:Name="CategoriaPicker" SelectedItem="{Binding SelectedCategoriaProduto}">
+                <Picker.ItemsSource>
+                    <Binding Path="CategoriasList" />
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Quantidade em estoque" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange"/>
+            <Entry Placeholder="Informe a quantidade disponível em estoque" x:Name="QteEstoqueEntry" Text="{Binding QuantidadeEstoque,Mode=TwoWay}" />
+
+            <Label Text="Informe a quantidade crítica para esse produto" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange"/>
+            <Entry Placeholder="Quantidade Crítica" x:Name="QteCriticaEntry" Text="{Binding QuantidadeCritica,Mode=TwoWay}" />
+
+            <Button Text="Salvar" Command="{Binding AddProdutoCommand}" VerticalOptions="End"/>
+        </StackLayout>
+
+
+    </VerticalStackLayout>
+
+
+
+
+
+</ContentPage>

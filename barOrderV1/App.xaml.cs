@@ -1,4 +1,6 @@
-﻿namespace barOrderV1
+﻿using barOrderV1.Services;
+
+namespace barOrderV1
 {
     public partial class App : Application
     {
@@ -6,7 +8,14 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            var services = new ServiceCollection();
+
+            // Registre as interfaces e suas implementações
+            services.AddSingleton<IProdutoService, ProdutoService>();
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            MainPage = new AppShell(serviceProvider);
         }
     }
 }

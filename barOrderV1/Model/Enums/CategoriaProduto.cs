@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace barOrderV1.Model.Enums
 {
     public enum CategoriaProduto : int
     {
+        
         CervejaLata = 0,
         CervejaGarrafa = 1,
         BebidasDose = 2,

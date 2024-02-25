@@ -4,9 +4,13 @@ namespace barOrderV1.View;
 
 public partial class EstoqueView : ContentPage
 {
-	public EstoqueView()
+	
+	public EstoqueView(EstoqueViewModel estoqueViewModel)
 	{
 		InitializeComponent();
-		BindingContext = new EstoqueViewModel();
-	}
+        BindingContext = estoqueViewModel;
+
+    }
 }
+
+

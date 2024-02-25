@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="barOrderV1.View.EstoqueDetailsView"
+             xmlns:Converter="clr-namespace:barOrderV1.Services"
+             xmlns:model="clr-namespace:barOrderV1.Model"
+             xmlns:vm="clr-namespace:barOrderV1.ViewModel"
+             xmlns:vma="barOrderV1.ViewModel.AddProdutoViewModel"
+             >
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label Text="Estoque Detalhes" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
+        <Converter:ConverterAliasParaEnumCategoriaProduto x:Key="aliasConverter" />
+    </ContentPage.Resources>
+
+
+    <ContentPage.BindingContext>
+        <vm:EstoqueDetailsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout>
+            <Label Text="{Binding CategoriaSelecionada, Converter={StaticResource aliasConverter}}" 
+                                                        FontSize="Large" 
+                                                        HorizontalTextAlignment="Center" 
+                                                        TextColor="Black" 
+                                                        Margin="0,10,0,10" />
+
+
+            <CollectionView ItemsSource="{Binding ProdutosFiltrados}" SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                        <Label Text="Nenhum produto disponível." FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Black" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ProdutoModel">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Atualizar" BackgroundColor="LightGreen"
+                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EstoqueDetailsViewModel}}, Path=EditarProdutosCommand}"
+                                     CommandParameter="{Binding .}"/>
+
+                                    <SwipeItem Text="Deletar" BackgroundColor="LightCoral" 
+                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EstoqueDetailsViewModel}}, Path=DeletarProdutoCommand}"
+                                     CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+
+
+                            <Frame>
+                                <StackLayout Margin="10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding Nome}" FontSize="Medium" TextColor="Black" Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand"/>
+
+                                        <Label Text="R$" FontSize="Medium" TextColor="Black" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" VerticalOptions="End"/>
+                                        <Label Text="{Binding Preco}" FontSize="Medium" TextColor="Black" Grid.Column="2" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="End"/>
+
+                                        <Label Text="Estoque:" FontSize="Small" TextColor="Gray" Grid.Column="0" Grid.Row="1" HorizontalOptions="StartAndExpand" VerticalOptions="Start"/>
+                                        <Frame BackgroundColor="Green" Padding="0" Grid.Column="1" Grid.Row="1" WidthRequest="30" HeightRequest="30" HorizontalOptions="End" VerticalOptions="End" Margin="15,2,2,2">
+                                            <Label Text="{Binding QuantidadeEstoque}" FontSize="Small" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Frame>
+
+                                        <Frame BackgroundColor="Red" Padding="0" Grid.Column="2" Grid.Row="2" WidthRequest="30" HeightRequest="30" Margin="2" HorizontalOptions="End" VerticalOptions="End" >
+                                            <Label Text="{Binding QuantidadeCritica}" FontSize="Small" TextColor="Black" Grid.Column="2" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Frame>
+
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+
+
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
+

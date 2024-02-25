@@ -5,6 +5,11 @@
              x:Class="barOrderV1.View.PaginaInicialView"
              Title="Comandas">
 
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label Text="Comandas" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
 
     <Grid>
         <Grid.RowDefinitions>
