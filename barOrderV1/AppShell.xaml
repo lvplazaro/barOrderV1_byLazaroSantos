@@ -10,21 +10,24 @@
 
     <Shell.FlyoutHeader>
         <VerticalStackLayout>
-            <Image Source="dotnet_bot.png"/>
-            <Label Text="barOrder" HorizontalTextAlignment="Center"/>
+            <Image Source="logo.svg" 
+       HeightRequest="150" 
+       WidthRequest="150" 
+       HorizontalOptions="CenterAndExpand"
+       Margin="10,40"/>
+            <Label Text="barOrder" FontSize="Title" HorizontalTextAlignment="Center" TextColor="#000659" Margin="10"/>
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
 
-    <ShellContent
-        Title="Comandas Abertas"
+    <ShellContent Title="Comandas Abertas" Icon="comanda_aberta.svg"  
         ContentTemplate="{DataTemplate local:PaginaInicialView}"
         Route="MainPage" />
 
-    <ShellContent Title="Comandas Fechadas"
+    <ShellContent Title="Comandas Fechadas" Icon="comanda_fechada.svg"
       ContentTemplate="{DataTemplate local:ComandasFechadasView}"
       Route="ComandasFechadasView"/>
 
-    <ShellContent Title="Estoque"
+    <ShellContent Title="Estoque" Icon="estoque.svg"
               ContentTemplate="{DataTemplate local:EstoqueView}"
               Route="EstoqueView"/>
 

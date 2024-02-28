@@ -25,19 +25,27 @@
 
     <ScrollView>
         <StackLayout>
+
+            <Image Source="{Binding ImagemSelecionada}" HeightRequest="100" 
+                                                        WidthRequest="100" 
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Margin="5,5"/>
+
             <Label Text="{Binding CategoriaSelecionada, Converter={StaticResource aliasConverter}}" 
-                                                        FontSize="Large" 
+                                                        FontSize="Medium" 
+                                                        FontAttributes="Italic"
                                                         HorizontalTextAlignment="Center" 
-                                                        TextColor="Black" 
+                                                        TextColor="#0c00cf" 
                                                         Margin="0,10,0,10" />
 
 
-            <CollectionView ItemsSource="{Binding ProdutosFiltrados}" SelectionMode="None">
-                <CollectionView.EmptyView>
-                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                        <Label Text="Nenhum produto disponível." FontSize="Medium" HorizontalTextAlignment="Center" TextColor="Black" />
-                    </StackLayout>
-                </CollectionView.EmptyView>
+
+
+
+
+            <CollectionView ItemsSource="{Binding ProdutosFiltrados}" SelectionMode="None" Background="Azure" EmptyView="Nenhum produto cadastrado">
+
+
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:ProdutoModel">
@@ -48,7 +56,7 @@
                                      Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EstoqueDetailsViewModel}}, Path=EditarProdutosCommand}"
                                      CommandParameter="{Binding .}"/>
 
-                                    <SwipeItem Text="Deletar" BackgroundColor="LightCoral" 
+                                    <SwipeItem Text="Deletar" BackgroundColor="Red" 
                                      Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EstoqueDetailsViewModel}}, Path=DeletarProdutoCommand}"
                                      CommandParameter="{Binding .}"/>
                                 </SwipeItems>
@@ -60,8 +68,8 @@
                                 <StackLayout Margin="10">
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>

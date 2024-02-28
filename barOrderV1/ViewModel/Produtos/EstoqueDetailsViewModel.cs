@@ -21,6 +21,9 @@ namespace barOrderV1.ViewModel
         public string? _categoriaSelecionada;
 
         [ObservableProperty]
+        public string? _imagemSelecionada;
+
+        [ObservableProperty]
         public ProdutoModel? _nome;
 
         public ObservableCollection<ProdutoModel>? ProdutosFiltrados { get; set; }
@@ -32,6 +35,8 @@ namespace barOrderV1.ViewModel
             CategoriaSelecionada = CatSelecionada.ToString();
             TodosProdutos = new List<ProdutoModel>(produtos);
             ProdutosFiltrados = new ObservableCollection<ProdutoModel>(TodosProdutos);
+            DeterminarImagemCategoria(CatSelecionada);
+
         }
         public EstoqueDetailsViewModel()
         {
@@ -82,6 +87,50 @@ namespace barOrderV1.ViewModel
             {
                 {"ProdutoObject",produtoEditar }
             });
+
+        private void DeterminarImagemCategoria(CategoriaProduto categoria)
+        {
+            // Lógica para determinar a imagem com base na categoria
+            switch (categoria)
+            {
+                case CategoriaProduto.CervejaLata:
+                    ImagemSelecionada = "cerveja_lata.png";
+                    break;
+
+                case CategoriaProduto.CervejaGarrafa:
+                    ImagemSelecionada = "cerveja_Garrafa.png";
+                    break;
+
+                case CategoriaProduto.BebidasDose:
+                    ImagemSelecionada = "bebida_dose.png";
+                    break;
+
+                case CategoriaProduto.Refrigerantes:
+                    ImagemSelecionada = "refrigerante.png";
+                    break;
+
+                case CategoriaProduto.Vinho:
+                    ImagemSelecionada = "vinho.png";
+                    break;
+
+                case CategoriaProduto.LitroDestilado:
+                    ImagemSelecionada = "litro_destilado.png";
+                    break;
+
+                case CategoriaProduto.Suco:
+                    ImagemSelecionada = "sucos.png";
+                    break;
+
+                case CategoriaProduto.Outros:
+                    ImagemSelecionada = "outros.png";
+                    break;
+
+
+                    //default:
+                    //    ImagemCategoria = "imagem_padrao.png"; // Imagem padrão caso a categoria não seja encontrada
+                    //    break;
+            }
+        }
 
     }
 }

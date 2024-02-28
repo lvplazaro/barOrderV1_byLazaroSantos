@@ -26,7 +26,43 @@ namespace barOrderV1.ViewModel
                                   DataAbertura = DateTime.Now,
                                   Total = 00.00,
                                   FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
-                                  }
+                                  },
+                new ComandaModel{ Id = 3,
+                                  Nome = "Claudia",
+                                  DataAbertura = DateTime.Now,
+                                  Total = 00.00,
+                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
+                                  },
+                new ComandaModel{ Id = 4,
+                                  Nome = "Claudia",
+                                  DataAbertura = DateTime.Now,
+                                  Total = 00.00,
+                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
+                                  },
+                new ComandaModel{ Id = 5,
+                                  Nome = "Claudia",
+                                  DataAbertura = DateTime.Now,
+                                  Total = 00.00,
+                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
+                                  },
+                new ComandaModel{ Id = 6,
+                                  Nome = "Claudia",
+                                  DataAbertura = DateTime.Now,
+                                  Total = 00.00,
+                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
+                                  },
+                new ComandaModel{ Id = 7,
+                                  Nome = "Claudia",
+                                  DataAbertura = DateTime.Now,
+                                  Total = 00.00,
+                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
+                                  },
+                new ComandaModel{ Id = 8,
+                                  Nome = "Claudia",
+                                  DataAbertura = DateTime.Now,
+                                  Total = 00.00,
+                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
+                                  },
 
         };
         }

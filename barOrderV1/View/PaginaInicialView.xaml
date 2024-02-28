@@ -7,17 +7,20 @@
 
     <Shell.TitleView>
         <HorizontalStackLayout VerticalOptions="Fill">
-            <Label Text="Comandas" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+            <Label Text="Comandas Abertas" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
         </HorizontalStackLayout>
     </Shell.TitleView>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="85*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="75*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <SearchBar Grid.Row="0" HorizontalOptions="FillAndExpand" Placeholder="Digite o nome da comanda ..."/>
+
+        <SearchBar Grid.Row="0" HorizontalOptions="FillAndExpand" Placeholder="Digite o nome da comanda ..." Margin="10"/>
+
+
 
 
         <CollectionView x:Name="Comandas" ItemsSource="{Binding Comandas}" Grid.Row="1">
@@ -26,12 +29,12 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BorderColor="Black" HasShadow="True" Padding="15" Margin="10" BackgroundColor="Yellow" HeightRequest="150" WidthRequest="190">
+                    <Frame BorderColor="Black" HasShadow="True" Padding="15" Margin="15,5,10,10" BackgroundColor="Yellow" HeightRequest="130" WidthRequest="160">
                         <StackLayout>
                             <Label Text="{Binding Nome}" TextColor="Blue" FontSize="Medium" LineBreakMode="NoWrap" HorizontalOptions="Center"/>
                             <FlexLayout Direction="Column">
-                                <Label Text="{Binding DataAbertura, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="Blue" FontSize="Small"/>
-                                <Label Text="{Binding Total, StringFormat='Total: {0:N2}'}" TextColor="Blue" FontSize="Small"/>
+                                <Label Text="{Binding DataAbertura, StringFormat='{0:dd/MM HH:mm}'}" TextColor="Blue" FontSize="Small"/>
+                                <Label Text="{Binding Total, StringFormat='Total R$: {0:N2}'}" TextColor="Blue" FontSize="Small"/>
                             </FlexLayout>
                         </StackLayout>
                     </Frame>
@@ -39,10 +42,10 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-       
+
 
         <StackLayout  Grid.Row="2" Margin="0,0,0,5">
-            <Frame BorderColor="Black" HasShadow="True" Padding="10" Margin="5" BackgroundColor="Yellow">
+            <Frame BorderColor="Black" HasShadow="True" Padding="10" Margin="5" BackgroundColor="#00098c">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                     <!-- Imagem -->
                     <Image Source="plus.png" 
@@ -52,6 +55,7 @@
 
                     <!-- Texto -->
                     <Label Text="Adicione novas comandas aqui" 
+                   TextColor="White"
                    VerticalOptions="Center" 
                    HorizontalOptions="Center"/>
                 </StackLayout>
@@ -59,7 +63,7 @@
         </StackLayout>
 
 
-        
+
     </Grid>
 
 </ContentPage>

@@ -12,30 +12,64 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="CornerRadius" Value="35"/>
+            <Setter Property="BackgroundColor" Value="#1935ff" />
+            <Setter Property="BorderColor" Value="Black" />
+            <Setter Property="HeightRequest" Value="30" />
+            <Setter Property="WidthRequest" Value="300" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="Small" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="1,1,0.5,1" />
+        </Style>
+    </ContentPage.Resources>
 
     <VerticalStackLayout>
 
         <StackLayout VerticalOptions="FillAndExpand">
-            <Label Text="Nome" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange" />
-            <Entry Placeholder="Informe o nome do produto" x:Name="NomeEntry" Text="{Binding Nome, Mode=TwoWay}" />
+            <Frame Margin="0,10">
+                <Label Text="Nome" HorizontalTextAlignment="Center"/>
+            </Frame>
+            <Entry Placeholder="Informe o nome do produto" x:Name="NomeEntry" Text="{Binding Nome, Mode=TwoWay}" WidthRequest="330"/>
 
-            <Label Text="Preço" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange"/>
-            <Entry Placeholder="Informe o preço do produto" x:Name="PreçoEntry" Text="{Binding Preco,Mode=TwoWay}" />
 
-            <Label Text="Categoria do produto" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange"/>
-            <Picker Title="Categoria" x:Name="CategoriaPicker" SelectedItem="{Binding SelectedCategoriaProduto}">
+            <Frame>
+                <Label Text="Preço" HorizontalTextAlignment="Center"/>
+            </Frame>
+            <Entry Placeholder="Informe o preço do produto" x:Name="PreçoEntry" Text="{Binding Preco,Mode=TwoWay}" WidthRequest="330" Keyboard="Numeric"/>
+
+            <Frame>
+                <Label Text="Categoria do produto" HorizontalTextAlignment="Center"/>
+            </Frame>
+
+
+            <Picker Title="Categoria" x:Name="CategoriaPicker" SelectedItem="{Binding SelectedCategoriaProduto}" WidthRequest="330">
                 <Picker.ItemsSource>
                     <Binding Path="CategoriasList" />
                 </Picker.ItemsSource>
             </Picker>
 
-            <Label Text="Quantidade em estoque" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange"/>
-            <Entry Placeholder="Informe a quantidade disponível em estoque" x:Name="QteEstoqueEntry" Text="{Binding QuantidadeEstoque,Mode=TwoWay}" />
+            <Frame>
+                <Label Text="Quantidade em estoque" HorizontalTextAlignment="Center"/>
+            </Frame>
+            <Entry Placeholder="Informe a quantidade disponível em estoque" x:Name="QteEstoqueEntry" Text="{Binding QuantidadeEstoque,Mode=TwoWay}" WidthRequest="330" Keyboard="Numeric" />
 
-            <Label Text="Informe a quantidade crítica para esse produto" HorizontalTextAlignment="Center" BackgroundColor="DarkOrange"/>
-            <Entry Placeholder="Quantidade Crítica" x:Name="QteCriticaEntry" Text="{Binding QuantidadeCritica,Mode=TwoWay}" />
+            <Frame>
+                <Label Text="Informe a quantidade crítica para esse produto" HorizontalTextAlignment="Center"/>
+            </Frame>
+            <Entry Placeholder="Quantidade Crítica" x:Name="QteCriticaEntry" Text="{Binding QuantidadeCritica,Mode=TwoWay}" WidthRequest="330" Keyboard="Numeric"/>
 
-            <Button Text="Salvar" Command="{Binding AddProdutoCommand}" VerticalOptions="End"/>
+            <Button Text="Salvar" Command="{Binding AddProdutoCommand}" Margin="5,60" VerticalOptions="End" BackgroundColor="#00098c"/>
         </StackLayout>
 
 

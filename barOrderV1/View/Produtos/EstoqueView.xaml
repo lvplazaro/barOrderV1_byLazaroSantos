@@ -17,13 +17,36 @@
         <toolkit:EventToCommandBehavior Command="{Binding GetProdutosAsyncCommand}" EventName="Appearing"/>
     </ContentPage.Behaviors>
 
+
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="Margin" Value="6" />
+            <Setter Property="BackgroundColor" Value="#1935ff" />
+            <Setter Property="BorderColor" Value="Black" />
+        </Style>
+
+        <Style TargetType="Image">
+            <Setter Property="HeightRequest" Value="55" />
+            <Setter Property="Aspect" Value="AspectFit" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+    </ContentPage.Resources>
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="70" />
+            <RowDefinition Height="40" />
 
         </Grid.RowDefinitions>
 
@@ -32,140 +55,127 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-
-
-
-
         <!-- Celula 1 -->
-        <Frame Grid.Row="0" Grid.Column="0" Margin="5" BackgroundColor="Transparent" BorderColor="Transparent" CornerRadius="75">
+        <Frame Grid.Row="0" Grid.Column="0">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer 
             Command="{Binding IrParaItensCommand}"
             CommandParameter="{x:Static local:CategoriaProduto.CervejaLata}" />
             </Frame.GestureRecognizers>
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Image Source="cerveja_lata.jpg" Aspect="AspectFill" HeightRequest="100" HorizontalOptions="CenterAndExpand" />
-                <Label Text="Cerveja Lata" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />
+                <Image Source="cerveja_lata.png"/>
+                <Label Text="Cerveja Lata"/>
             </StackLayout>
         </Frame>
 
-
-
-
         <!-- Celula 2 -->
-        <Frame Grid.Row="0" Grid.Column="1" Margin="5" BackgroundColor="Transparent" CornerRadius="75">
+        <Frame Grid.Row="0" Grid.Column="1">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer 
                    Command="{Binding IrParaItensCommand}"
-                    CommandParameter="{x:Static local:CategoriaProduto.CervejaGarrafa}" />
+                   CommandParameter="{x:Static local:CategoriaProduto.CervejaGarrafa}" />
             </Frame.GestureRecognizers>
             <StackLayout>
-                <Image Source="cerveja_garrafa.jpg" Aspect="AspectFill" HeightRequest="100"/>
-                <Label Text="Cerveja Garrafa" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Image Source="cerveja_garrafa.png"/>
+                <Label Text="Cerveja Garrafa"/>
             </StackLayout>
         </Frame>
 
-
-
-
-
-
         <!-- Celula 3 -->
-        <Frame Grid.Row="1" Grid.Column="0" Margin="5" BackgroundColor="Transparent" CornerRadius="75">
+        <Frame Grid.Row="1" Grid.Column="0">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer 
                     Command="{Binding IrParaItensCommand}"
                     CommandParameter="{x:Static local:CategoriaProduto.BebidasDose}" />
             </Frame.GestureRecognizers>
             <StackLayout>
-                <Image Source="bebida_dose.jpg" Aspect="AspectFill" HeightRequest="100"/>
-                <Label Text="Doses" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Image Source="bebida_dose.png" />
+                <Label Text="Doses"/>
             </StackLayout>
         </Frame>
 
         <!-- Celula 4 -->
-        <Frame Grid.Row="1" Grid.Column="1" Margin="5" BackgroundColor="Transparent" CornerRadius="75">
+        <Frame Grid.Row="1" Grid.Column="1">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer 
                      Command="{Binding IrParaItensCommand}"
                      CommandParameter="{x:Static local:CategoriaProduto.Refrigerantes}" />
             </Frame.GestureRecognizers>
             <StackLayout>
-                <Image Source="refrigerante.jpg" Aspect="AspectFill" HeightRequest="100"/>
-                <Label Text="Refrigerantes" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Image Source="refrigerante.png"/>
+                <Label Text="Refrigerantes"/>
             </StackLayout>
         </Frame>
 
         <!-- Celula 5 -->
-        <Frame Grid.Row="2" Grid.Column="0" Margin="5" BackgroundColor="Transparent" CornerRadius="75">
+        <Frame Grid.Row="2" Grid.Column="0">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer 
                      Command="{Binding IrParaItensCommand}"
                      CommandParameter="{x:Static local:CategoriaProduto.Vinho}" />
             </Frame.GestureRecognizers>
             <StackLayout>
-                <Image Source="vinho.jpg" Aspect="AspectFill" HeightRequest="100"/>
-                <Label Text="Vinhos" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Image Source="vinho.png" />
+                <Label Text="Vinhos" />
             </StackLayout>
         </Frame>
 
         <!-- Celula 6 -->
-        <Frame Grid.Row="2" Grid.Column="1" Margin="5" BackgroundColor="Transparent" CornerRadius="75">
+        <Frame Grid.Row="2" Grid.Column="1" >
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer 
                     Command="{Binding IrParaItensCommand}"
                     CommandParameter="{x:Static local:CategoriaProduto.LitroDestilado}" />
             </Frame.GestureRecognizers>
             <StackLayout>
-                <Image Source="litro_destilado.jpg" Aspect="AspectFill" HeightRequest="100"/>
-                <Label Text="Litros" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Image Source="litro_destilado.png"/>
+                <Label Text="Litros"/>
             </StackLayout>
         </Frame>
 
         <!-- Celula 7 -->
-        <Frame Grid.Row="3" Grid.Column="0" Margin="5" BackgroundColor="Transparent" CornerRadius="75">
+        <Frame Grid.Row="3" Grid.Column="0">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer 
                     Command="{Binding IrParaItensCommand}"
                     CommandParameter="{x:Static local:CategoriaProduto.Suco}" />
             </Frame.GestureRecognizers>
             <StackLayout>
-                <Image Source="suco.jpg" Aspect="AspectFill" HeightRequest="100"/>
-                <Label Text="Sucos" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Image Source="sucos.png"/>
+                <Label Text="Sucos"/>
             </StackLayout>
         </Frame>
 
         <!-- Celula 8 -->
-        <Frame Grid.Row="3" Grid.Column="1" Margin="5" BackgroundColor="Transparent" CornerRadius="75">
+        <Frame Grid.Row="3" Grid.Column="1">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer 
                      Command="{Binding IrParaItensCommand}"
                      CommandParameter="{x:Static local:CategoriaProduto.Outros}" />
             </Frame.GestureRecognizers>
             <StackLayout>
-                <Image Source="outros.jpg" Aspect="AspectFill" HeightRequest="100"/>
-                <Label Text="Outros" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Image Source="outros.png"/>
+                <Label Text="Outros"/>
             </StackLayout>
         </Frame>
 
         <StackLayout  Grid.Row="4"  Grid.ColumnSpan="2" Margin="0,0,0,5">
-            <Frame BorderColor="Black" HasShadow="True" Padding="10" Margin="5" BackgroundColor="Yellow">
+            <Frame BorderColor="Black" HasShadow="True" Padding="5" Margin="2" BackgroundColor="#00098c">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer 
-                         Command="{Binding IrParaAddProdutosCommand}"
-                         />
+                    <TapGestureRecognizer Command="{Binding IrParaAddProdutosCommand}" />
+
                 </Frame.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                     <!-- Imagem -->
-                    <Image Source="plus.png" 
-           Aspect="AspectFit" 
-           HeightRequest="25" 
-           WidthRequest="25"/>
+                    <Image Source="plus.png" Margin="5,0,15,0" 
+                                             Aspect="AspectFit" 
+                                             HeightRequest="15" 
+                                             WidthRequest="15"/>
 
                     <!-- Texto -->
-                    <Label Text="Adicione novos produtos aqui" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center"/>
+                    <Label Text="Adicione novos produtos aqui" TextColor="White"
+                                                               VerticalOptions="Center" 
+                                                               HorizontalOptions="Center"/>
                 </StackLayout>
             </Frame>
         </StackLayout>
