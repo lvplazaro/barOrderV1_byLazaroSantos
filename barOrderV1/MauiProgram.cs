@@ -5,6 +5,8 @@ using barOrderV1.View;
 using barOrderV1.ViewModel;
 using barOrderV1.Services;
 using CommunityToolkit.Maui;
+using barOrderV1.View.Comandas;
+using barOrderV1.ViewModel.Comandas;
 
 namespace barOrderV1
 {
@@ -37,13 +39,16 @@ namespace barOrderV1
             builder.Services.AddTransient<EditProdutoView>();
             builder.Services.AddTransient<EditProdutoViewModel>();
 
-
+            builder.Services.AddTransient<AddComandaView>();
+            builder.Services.AddTransient<AddComandaViewModel>();
 
 
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<IProdutoService, ProdutoService>();
+            builder.Services.AddSingleton<IComandaService, ComandaService>();
+
 
             return builder.Build();
         }

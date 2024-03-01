@@ -1,4 +1,5 @@
 ﻿using barOrderV1.Model.Enums;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +8,27 @@ using System.Threading.Tasks;
 
 namespace barOrderV1.Model
 {
-    internal class ComandaModel
+    [Table("Comanda")]
+    public class ComandaModel
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
+        [MaxLength(100), NotNull]
         public string Nome { get; set; }
+
+        [MaxLength(10), NotNull]
         public DateTime DataAbertura { get; set; }
+
+        [MaxLength(10)]
         public DateTime? DataFechamento { get; set; }
-        public List<ProdutoModel> Produtos { get; set; } = new List<ProdutoModel>();
+
+        [NotNull]
         public double Total { get; set; }
-        public FormaPagamento FormaDePagamento { get; set; }
-        public Dictionary<ProdutoModel, DateTime> ProdutosAdicionados { get; set; } = new Dictionary<ProdutoModel, DateTime>();
+
+        public FormaPagamento? FormaDePagamento { get; set; }
+
+        [NotNull]
+        public ComandaStatus Status { get; set; }
     }
 }

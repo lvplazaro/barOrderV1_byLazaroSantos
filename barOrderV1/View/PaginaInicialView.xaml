@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:barOrderV1.ViewModel"
              x:Class="barOrderV1.View.PaginaInicialView"
@@ -10,6 +11,14 @@
             <Label Text="Comandas Abertas" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
         </HorizontalStackLayout>
     </Shell.TitleView>
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding GetComandasAsyncCommand}" EventName="Appearing"/>
+    </ContentPage.Behaviors>
+
+    <ContentPage.BindingContext>
+        <viewmodel:PaginaInicialViewModel/>
+    </ContentPage.BindingContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -29,15 +38,27 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BorderColor="Black" HasShadow="True" Padding="15" Margin="15,5,10,10" BackgroundColor="Yellow" HeightRequest="130" WidthRequest="160">
-                        <StackLayout>
-                            <Label Text="{Binding Nome}" TextColor="Blue" FontSize="Medium" LineBreakMode="NoWrap" HorizontalOptions="Center"/>
-                            <FlexLayout Direction="Column">
-                                <Label Text="{Binding DataAbertura, StringFormat='{0:dd/MM HH:mm}'}" TextColor="Blue" FontSize="Small"/>
-                                <Label Text="{Binding Total, StringFormat='Total R$: {0:N2}'}" TextColor="Blue" FontSize="Small"/>
-                            </FlexLayout>
-                        </StackLayout>
-                    </Frame>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+
+
+                                <SwipeItem Text="Deletar" BackgroundColor="Red"
+                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PaginaInicialViewModel}}, Path=DeletarComandaCommand}"
+                                     CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Frame BorderColor="Black" HasShadow="True" Padding="15" Margin="15,5,10,10" BackgroundColor="Yellow" HeightRequest="130" WidthRequest="160">
+                            <StackLayout>
+                                <Label Text="{Binding Nome}" TextColor="Blue" FontSize="Medium" LineBreakMode="NoWrap" HorizontalOptions="Center"/>
+                                <FlexLayout Direction="Column">
+                                    <Label Text="{Binding DataAbertura, StringFormat='{0:dd/MM HH:mm}'}" TextColor="Blue" FontSize="Small"/>
+                                    <Label Text="{Binding Total, StringFormat='Total R$: {0:N2}'}" TextColor="Blue" FontSize="Small"/>
+                                </FlexLayout>
+                            </StackLayout>
+                        </Frame>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
@@ -46,6 +67,10 @@
 
         <StackLayout  Grid.Row="2" Margin="0,0,0,5">
             <Frame BorderColor="Black" HasShadow="True" Padding="10" Margin="5" BackgroundColor="#00098c">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding IrParaAddComandasCommand}" />
+
+                </Frame.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                     <!-- Imagem -->
                     <Image Source="plus.png" 

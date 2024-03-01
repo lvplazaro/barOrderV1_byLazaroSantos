@@ -1,4 +1,5 @@
 ﻿using barOrderV1.View;
+using barOrderV1.View.Comandas;
 
 namespace barOrderV1
 {
@@ -11,6 +12,8 @@ namespace barOrderV1
             Routing.RegisterRoute(nameof(EditProdutoView), typeof(EditProdutoView));
             Routing.RegisterRoute(nameof(EstoqueDetailsView), typeof(EstoqueDetailsView));
             Routing.RegisterRoute(nameof(AddProdutoView), typeof(AddProdutoView));
+
+            Routing.RegisterRoute(nameof(AddComandaView), typeof(AddComandaView));
 
         }
     }

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace barOrderV1.Model.Enums
 {
-    internal enum FormaPagamento : int
+    public enum FormaPagamento : int
     {
-        Dinheiro = 0,
-        CartaoCredito = 1,
-        CartaoDebito = 2,
-        Pix = 3,
-        Outros = 4,
+        Definir = 0,
+        Dinheiro = 1,
+        CartaoCredito = 2,
+        CartaoDebito = 3,
+        Pix = 4,
+        Outros = 5,
     }
 }
