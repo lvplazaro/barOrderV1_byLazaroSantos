@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+                xmlns:vm="clr-namespace:barOrderV1.ViewModel.Comandas"
+             x:Class="barOrderV1.View.Comandas.ProdutosPopUpView"         
+             >
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label Text="Produtos disponiveis" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.BindingContext>
+        <vm:ProdutosPopUpViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <!--<Setter Property="Margin" Value="5" />-->
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="CornerRadius" Value="10" />
+
+
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="White" />
+
+
+        </Style>
+        
+    </ContentPage.Resources>
+
+
+    <Grid Margin="5">
+        
+        
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>-->
+        
+        <!--<Label Text="Produtos" HorizontalOptions="CenterAndExpand" FontSize="Medium" Grid.Row="0"/>-->
+
+        <CollectionView ItemsSource="{Binding ProdutosPopUp}" EmptyView="Sem produtos cadastrados"  
+                SelectedItem="{Binding ProdutoEditavel, Mode=TwoWay}">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="#1935ff" BorderColor="Black">
+
+                        <!--<StackLayout Orientation="Horizontal">-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".5*"/>
+                                <ColumnDefinition Width=".2*"/>
+                                <ColumnDefinition Width=".2*"/>
+                                <ColumnDefinition Width=".1*"/>
+
+                            </Grid.ColumnDefinitions>
+
+
+                            <Frame Grid.Column="0" >
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProdutosPopUpViewModel}}, Path=AdicionarProdutoAComandaCommand}"
+ CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <Label Text="{Binding Nome}"/>
+                        </Frame>
+                        
+
+                        <Frame Grid.Column="1">
+                                <Label Text="R$" FontSize="Small" />
+                        </Frame>
+
+                        <Frame Grid.Column="2">
+                            <Label Text="{Binding Preco}" HorizontalOptions="Center" />
+                        </Frame>
+
+                        <Frame Grid.Column="3">
+                                
+                                <Image Source="adicionargo.png" WidthRequest="18" HeightRequest="18"/>
+                        </Frame>
+                        </Grid>
+                    </Frame>
+                    <!--</StackLayout>-->
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+
+</ContentPage>
+
+

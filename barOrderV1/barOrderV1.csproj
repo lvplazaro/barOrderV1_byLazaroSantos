@@ -89,7 +89,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="View\Comandas\AddComandaView.xaml">
+	  <MauiXaml Update="View\Comandas\ComandaAbertaView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Comandas\ProdutosPopUpView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Produtos\AddProdutoView.xaml">

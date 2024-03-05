@@ -1,7 +1,9 @@
 ﻿using barOrderV1.Model;
+using barOrderV1.Model.Enums;
 using barOrderV1.Services;
 using barOrderV1.View.Comandas;
 using barOrderV1.ViewModel.Comandas;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
@@ -10,43 +12,92 @@ namespace barOrderV1.ViewModel
     public partial class PaginaInicialViewModel : BaseViewModel
     {
         private readonly IComandaService _comandaService;
-        //public List<ComandaModel> Comandas { get; set; } = new List<ComandaModel>();
 
         public ObservableCollection<ComandaModel> Comandas { get; set; } = new ObservableCollection<ComandaModel>();
 
+        [ObservableProperty]
+        public string? _nome;
+
+        [ObservableProperty]
+        public DateTime _dataAbertura;
+
+        [ObservableProperty]
+        public DateTime _dataFechamento;
+
+        public ObservableCollection<ProdutoModel>? Produtos { get; set; } = new ObservableCollection<ProdutoModel>();
+
+        [ObservableProperty]
+        public double _total;
+
+        [ObservableProperty]
+        public FormaPagamento _formaDePagamento;
+
+        [ObservableProperty]
+        public ComandaStatus _status;
 
         public PaginaInicialViewModel(IComandaService comandaService)
         {
             _comandaService = comandaService;
             Task.Run(GetComandasAsync);
-
-            MessagingCenter.Subscribe<AddComandaViewModel>(this, "NovoComandaAdicionada", async (sender) =>
-            {
-                await GetComandasAsync();
-            });
-
-            MessagingCenter.Subscribe<PaginaInicialViewModel>(this, "ComandaDeletada", async (sender) =>
-            {
-                await GetComandasAsync();
-            });
-
         }
 
-        public PaginaInicialViewModel()
-        {
 
+        [RelayCommand]
+        public async Task AddComandas()
+        {
+            try
+            {
+                string nome = await Shell.Current.DisplayPromptAsync("Adicionar Comanda", "Informe o nome do cliente:");
+
+                if (nome == null)
+                {
+                    return; // Retorna imediatamente sem continuar o processamento
+                }
+                if (string.IsNullOrEmpty(nome))
+                {
+                    await Shell.Current.DisplayAlert("Erro", "O nome do cliente não pode estar em branco.", "Ok");
+                    return;
+                }
+
+                var novaComanda = new ComandaModel
+                {
+                    Nome = nome,
+                    DataAbertura = DateTime.Now,
+                    DataFechamento = DateTime.Now.AddDays(2),
+                    //Produtos = null,
+                    Total = 00.00,
+                    FormaDePagamento = 0,
+                    Status = 0,
+                };
+
+                await _comandaService.InitializeAsync();
+
+                await _comandaService.AddComanda(novaComanda);
+
+                await GetComandasAsync();
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Erro", ex.Message, "ok");
+            }
         }
 
         [RelayCommand]
-        Task IrParaAddComandas()
+        Task IrParaComandaAberta(ComandaModel comandaEditar) 
         {
-            return Shell.Current.GoToAsync(nameof(AddComandaView));
+            ProdutoService produtoService = new ProdutoService();
+            ComandaService comandaService = new ComandaService();
+            ComandaProdutoService comandaProdutoService = new ComandaProdutoService(comandaService, produtoService);
+
+            var comandaAbertaViewModel = new ComandaAbertaViewModel(comandaService, produtoService, comandaProdutoService, comandaEditar);
+            var comandaAbertaView = new ComandaAbertaView(comandaAbertaViewModel);
+            return Shell.Current.Navigation.PushAsync(comandaAbertaView);
+
         }
 
         [RelayCommand]
         public async Task GetComandasAsync()
         {
-
             try
             {
                 await _comandaService.InitializeAsync();
@@ -84,11 +135,7 @@ namespace barOrderV1.ViewModel
 
                     await Shell.Current.DisplayAlert("Sucesso", "Comanda deletada com sucesso!", "Ok");
 
-                    MessagingCenter.Send(this, "ComandaDeletada");
-
-                    _ = Task.Run(GetComandasAsync);
-
-                    await Shell.Current.GoToAsync("..");
+                    await GetComandasAsync();
 
                 }
                 catch (Exception ex)
@@ -101,56 +148,3 @@ namespace barOrderV1.ViewModel
     }
 }
 
-//Comandas = new List<ComandaModel>()
-//            {
-//                new ComandaModel{ Id = 1,
-//                                  Nome = "Pintinho",
-//                                  DataAbertura = new DateTime(2024, 1, 27, 10, 30, 0),
-//                                  Total = 20.00,
-//                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
-//                                  },
-//                new ComandaModel{ Id = 2,
-//                                  Nome = "Claudia",
-//                                  DataAbertura = DateTime.Now,
-//                                  Total = 00.00,
-//                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
-//                                  },
-//                new ComandaModel{ Id = 3,
-//                                  Nome = "Claudia",
-//                                  DataAbertura = DateTime.Now,
-//                                  Total = 00.00,
-//                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
-//                                  },
-//                new ComandaModel{ Id = 4,
-//                                  Nome = "Claudia",
-//                                  DataAbertura = DateTime.Now,
-//                                  Total = 00.00,
-//                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
-//                                  },
-//                new ComandaModel{ Id = 5,
-//                                  Nome = "Claudia",
-//                                  DataAbertura = DateTime.Now,
-//                                  Total = 00.00,
-//                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
-//                                  },
-//                new ComandaModel{ Id = 6,
-//                                  Nome = "Claudia",
-//                                  DataAbertura = DateTime.Now,
-//                                  Total = 00.00,
-//                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
-//                                  },
-//                new ComandaModel{ Id = 7,
-//                                  Nome = "Claudia",
-//                                  DataAbertura = DateTime.Now,
-//                                  Total = 00.00,
-//                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
-//                                  },
-//                new ComandaModel{ Id = 8,
-//                                  Nome = "Claudia",
-//                                  DataAbertura = DateTime.Now,
-//                                  Total = 00.00,
-//                                  FormaDePagamento = Model.Enums.FormaPagamento.Dinheiro
-//                                  },
-
-//        };
-//        }

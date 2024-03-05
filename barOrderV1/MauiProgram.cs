@@ -7,6 +7,8 @@ using barOrderV1.Services;
 using CommunityToolkit.Maui;
 using barOrderV1.View.Comandas;
 using barOrderV1.ViewModel.Comandas;
+using barOrderV1.Model;
+using barOrderV1.Model.Enums;
 
 namespace barOrderV1
 {
@@ -24,6 +26,7 @@ namespace barOrderV1
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+
             builder.Services.AddSingleton<PaginaInicialView>();
             builder.Services.AddSingleton<PaginaInicialViewModel>();
 
@@ -39,15 +42,20 @@ namespace barOrderV1
             builder.Services.AddTransient<EditProdutoView>();
             builder.Services.AddTransient<EditProdutoViewModel>();
 
-            builder.Services.AddTransient<AddComandaView>();
-            builder.Services.AddTransient<AddComandaViewModel>();
+            
 
+            builder.Services.AddTransient<ComandaAbertaView>();
+            builder.Services.AddTransient<ComandaAbertaViewModel>();
+
+
+            builder.Services.AddTransient<ProdutosPopUpView, ProdutosPopUpViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<IProdutoService, ProdutoService>();
             builder.Services.AddSingleton<IComandaService, ComandaService>();
+            builder.Services.AddSingleton<IComandaProdutoService, ComandaProdutoService>();
 
 
             return builder.Build();

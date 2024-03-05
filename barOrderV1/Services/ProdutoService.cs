@@ -1,4 +1,5 @@
 ﻿using barOrderV1.Model;
+using barOrderV1.Model.Enums;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -49,9 +50,42 @@ namespace barOrderV1.Services
             return await _dbConnection.UpdateAsync(produto);
         }
 
-        
+        public async Task<List<ProdutoModel>> GetProdutosPorCategoria(CategoriaProduto categoriaSelecionada)
+        {
+            try
+            {
+                var produtosFiltrados = await _dbConnection.Table<ProdutoModel>()
+                                                         .Where(produto => produto.Categoria == categoriaSelecionada)
+                                                         .ToListAsync();
+                return produtosFiltrados;
+            }
+            catch (Exception ex)
+            {
+                // Trate a exceção conforme necessário
+                Console.WriteLine($"Erro ao recuperar produtos por categoria: {ex.Message}");
+                return new List<ProdutoModel>(); // Retorna uma lista vazia em caso de erro
+            }
+        }
 
+        public async Task<ProdutoModel> GetProdutoPorId(int produtoId)
+        {
+            try
+            {
+                // Consulta o banco de dados para encontrar o produto com o ID fornecido
+                var produto = await _dbConnection.Table<ProdutoModel>()
+                                                .Where(p => p.Id == produtoId)
+                                                .FirstOrDefaultAsync();
 
+                // Retorna o produto encontrado (ou null se não encontrado)
+                return produto;
+            }
+            catch (Exception ex)
+            {
+                // Trate qualquer exceção que possa ocorrer durante a consulta ao banco de dados
+                Console.WriteLine($"Erro ao obter produto por ID: {ex.Message}");
+                return null; // Retorna null em caso de erro
+            }
+        }
 
     }
 }

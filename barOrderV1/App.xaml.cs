@@ -10,9 +10,9 @@ namespace barOrderV1
 
             var services = new ServiceCollection();
 
-            // Registre as interfaces e suas implementações
             services.AddSingleton<IProdutoService, ProdutoService>();
             services.AddSingleton<IComandaService, ComandaService>();
+            services.AddSingleton<IComandaProdutoService, ComandaProdutoService>();
 
 
             var serviceProvider = services.BuildServiceProvider();

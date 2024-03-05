@@ -15,7 +15,7 @@ namespace barOrderV1.Model
         public int Id { get; set; }
 
         [MaxLength(100), NotNull]
-        public string Nome { get; set; }
+        public string? Nome { get; set; }
 
         [MaxLength(10), NotNull]
         public DateTime DataAbertura { get; set; }
@@ -30,5 +30,8 @@ namespace barOrderV1.Model
 
         [NotNull]
         public ComandaStatus Status { get; set; }
+
+        [Ignore] // Esta propriedade não será mapeada para o banco de dados
+        public List<int>? ProdutoIds { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace barOrderV1.ViewModel
     {
         private readonly IProdutoService _produtoService;
 
-        public AddProdutoViewModel AddProdutoViewModel { get; set; }
+        //public AddProdutoViewModel AddProdutoViewModel { get; set; }
 
         [ObservableProperty]
         public string? _categoriaSelecionada;
@@ -83,10 +83,10 @@ namespace barOrderV1.ViewModel
 
         [RelayCommand]
         private async Task EditarProdutos(ProdutoModel produtoEditar) =>
-            await Shell.Current.GoToAsync("EditProdutoView", new Dictionary<string, object>
-            {
-                {"ProdutoObject",produtoEditar }
-            });
+        await Shell.Current.GoToAsync("EditProdutoView", new Dictionary<string, object>
+        {
+           {"ProdutoObject",produtoEditar }
+        });
 
         private void DeterminarImagemCategoria(CategoriaProduto categoria)
         {
