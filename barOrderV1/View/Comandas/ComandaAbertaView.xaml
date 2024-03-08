@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:barOrderV1.Model.Enums"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:barOrderV1.ViewModel.Comandas"
+             xmlns:model="clr-namespace:barOrderV1.Model"
              x:Class="barOrderV1.View.Comandas.ComandaAbertaView"
              Title="ComandaAbertaView">
 
@@ -15,7 +17,11 @@
     <ContentPage.BindingContext>
         <vm:ComandaAbertaViewModel />
     </ContentPage.BindingContext>
-    
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding GetComandaProdutosAsyncCommand}" EventName="Appearing"/>
+    </ContentPage.Behaviors>
+
     <Grid Margin="5,5,0,10">
         <Grid.RowDefinitions>
             <RowDefinition Height=".2*"/>
@@ -41,46 +47,59 @@
             <Label Text="{Binding ComandaEditavel.Total, StringFormat='Total: {0:C}'}" Grid.Column="1" Grid.Row="2" Margin="1" Padding="0" FontSize="Large"/>
         </Grid>
 
-        <Frame Margin="5" BackgroundColor="#1935ff" Grid.Row="1">
-            <CollectionView ItemsSource="{Binding ProdutosNaComanda}" EmptyView="Sem produtos cadastrados">
+        <Frame Margin="5" BackgroundColor="#1935ff" Grid.Row="1" Padding="5">
+            <CollectionView ItemsSource="{Binding ProdutosNaComanda}" EmptyView="Sem produtos cadastrados" HorizontalOptions="CenterAndExpand">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BackgroundColor="White" BorderColor="Black" Margin="0,0,0,10" Padding="2">
+                        <Frame BackgroundColor="White" BorderColor="Black" Margin="2" Padding="2">
 
-
-                                    
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width=".6*"/>
+                                    <ColumnDefinition Width=".55*"/>
+                                    <ColumnDefinition Width=".2*"/>
                                     <ColumnDefinition Width=".1*"/>
-                                    <ColumnDefinition Width=".3*"/>
-                                    
-
+                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width=".1*"/>
                                 </Grid.ColumnDefinitions>
 
-
-                                <Frame Grid.Column="0" Margin="5" Padding="0" >
-                                    <Label Text="{Binding Nome}"  TextColor="black" FontSize="Small"/>
+                                <Frame Grid.Column="0" Margin="5" Padding="0" BorderColor="Transparent" >
+                                    <Label Text="{Binding Nome}"  TextColor="Black" FontSize="Small"/>
                                 </Frame>
 
-
-                                <Frame Grid.Column="1" Margin="5" Padding="0">
-                                    <Label Text="R$" FontSize="Small" />
+                                <Frame Grid.Column="1" Margin="5" Padding="0" BorderColor="Transparent">
+                                    <Label Text="{Binding Preco, StringFormat='R${0}'}" HorizontalOptions="Center" TextColor="Black" />
                                 </Frame>
 
-                                <Frame Grid.Column="2" Margin="5" Padding="0">
-                                    <Label Text="{Binding Preco}" HorizontalOptions="Center" TextColor="Black" />
+                                <Frame Grid.Column="2" Margin="5" Padding="0" BackgroundColor="Red" BorderColor="Transparent">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ComandaAbertaViewModel}}, Path=DecrementarQuantidadeProdutoCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="-" HorizontalOptions="Center" TextColor="Black" />
                                 </Frame>
 
-                                
+                                <Frame Grid.Column="3" Margin="5" Padding="0" BorderColor="Transparent">
+                                    <Label Text="{Binding QuantidadeDeProduto }" HorizontalOptions="Center" TextColor="Black" />
+                                </Frame>
+
+                                <Frame Grid.Column="4" Margin="5" Padding="0" BackgroundColor="Green" BorderColor="Transparent">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ComandaAbertaViewModel}}, Path=IncrementarQuantidadeProdutoCommand}"
+                                                CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="+" HorizontalOptions="Center" TextColor="Black" />
+                                </Frame>
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
 
         </Frame>
 

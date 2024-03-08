@@ -31,7 +31,6 @@ namespace barOrderV1.Model
         [NotNull]
         public ComandaStatus Status { get; set; }
 
-        [Ignore] // Esta propriedade não será mapeada para o banco de dados
-        public List<int>? ProdutoIds { get; set; }
+        
     }
 }

@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Design;
+using System.Linq;
 
 namespace barOrderV1.ViewModel.Comandas
 {
@@ -50,7 +51,10 @@ namespace barOrderV1.ViewModel.Comandas
                 ProdutosPopUp?.Clear();
                 foreach (var produto in produtos)
                 {
-                    ProdutosPopUp?.Add(produto);
+                    if (produto.QuantidadeEstoque > 0)
+                    {
+                        ProdutosPopUp?.Add(produto);
+                    }
                 }
             }
             catch (Exception ex)
@@ -69,11 +73,48 @@ namespace barOrderV1.ViewModel.Comandas
                     await Shell.Current.DisplayAlert("Erro", "Comanda ou produto não selecionado.", "Ok");
                     return;
                 }
-                await _comandaProdutoService.InitializeAsync();
-                await _comandaProdutoService.AdicionarProdutoAComanda(ComandaEditavel.Id, ProdutoAdicionado.Id);
-                await Shell.Current.DisplayAlert("Sucesso", "Produto adicionado à comanda com sucesso!", "Ok");
 
-                await Shell.Current.GoToAsync("..");
+                else if (ProdutoAdicionado.QuantidadeEstoque <= 0)
+                {
+                    await Shell.Current.DisplayAlert("Erro", "Quantidade em estoque do produto é zero.", "Ok");
+                    return;
+                }
+
+                await _comandaProdutoService.InitializeAsync();
+
+                var comandasProdutos = await _comandaProdutoService.GetComandaProdutos();
+
+                // Verifica se já existe um produto associado à comanda
+                bool produtoAssociado = comandasProdutos.Any(cp => cp.ComandaId == ComandaEditavel.Id && cp.ProdutoId == ProdutoAdicionado.Id);
+
+                if (produtoAssociado)
+                {
+                    await Shell.Current.DisplayAlert("Produto ja adicionado", "Altere a quantidade na lista de produtos adicionado", "Ok");
+                    await Shell.Current.GoToAsync("..");
+
+                }
+                else
+                {
+                    await _comandaProdutoService.AdicionarProdutoAComanda(ComandaEditavel.Id, ProdutoAdicionado.Id,1);
+
+                    ProdutoAdicionado.QuantidadeEstoque -= 1;
+                    await _produtoService.UpdateProduto(ProdutoAdicionado);
+
+                    MessagingCenter.Send(this, "ProdutoAtualizado");
+
+                    if (ProdutoAdicionado.QuantidadeEstoque <= ProdutoAdicionado.QuantidadeCritica)
+                    {
+                        await Shell.Current.DisplayAlert("Aviso", "Produto em quantidade critica!", "Ok");
+
+                    }
+
+                    await Shell.Current.DisplayAlert("Sucesso", "Produto adicionado à comanda com sucesso!", "Ok");
+
+
+                    await Shell.Current.GoToAsync("..");
+                }
+
+                
 
             }
             catch (Exception ex)

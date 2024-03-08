@@ -51,31 +51,78 @@ namespace barOrderV1.Services
             return await _produtoService.GetProdutos();
         }
 
-        public async Task<int> AdicionarProdutoAComanda(int comandaId, int produtoId)
-        {         
-                var comandaProduto = new ComandaProduto
-                {
-                    ComandaId = comandaId,
-                    ProdutoId = produtoId,
-                };
-
-                return await _dbConnection.InsertAsync(comandaProduto);           
-        }
-
-        public async Task<int> RemoverProdutoDeComanda(int comandaId, int produtoId)
+        public async Task<int> AdicionarProdutoAComanda(int comandaId, int produtoId, int QuantidadeDeProduto)
         {
             var comandaProduto = new ComandaProduto
             {
                 ComandaId = comandaId,
                 ProdutoId = produtoId,
+                QuantidadeDeProduto = 1,
             };
 
-            return await _dbConnection.DeleteAsync(comandaProduto);
+            return await _dbConnection.InsertAsync(comandaProduto);
         }
+
+        public async Task<int> RemoverProdutoDeComanda(int comandaId, int produtoId)
+        {
+            return await _dbConnection.ExecuteAsync("DELETE FROM ComandaProduto WHERE ComandaId = ? AND ProdutoId = ?", comandaId, produtoId);
+        }
+
 
         public async Task<List<ComandaProduto>> GetComandaProdutos()
         {
             return await _dbConnection.Table<ComandaProduto>().ToListAsync();
         }
+
+        public async Task<int> AdicionarQuantidadeProdutoAComanda(int comandaId, int produtoId, int quantidadeAdicional)
+        {
+            try
+            {
+                var comandaProduto = await _dbConnection.Table<ComandaProduto>()
+                    .Where(cp => cp.ComandaId == comandaId && cp.ProdutoId == produtoId)
+                    .FirstOrDefaultAsync();
+
+                if (comandaProduto != null)
+                {
+                    comandaProduto.QuantidadeDeProduto += quantidadeAdicional;
+                    return await _dbConnection.UpdateAsync(comandaProduto);
+                }
+                else
+                {
+                    throw new InvalidOperationException("O ComandaProduto especificado não foi encontrado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao adicionar quantidade de produto à comanda: {ex.Message}");
+                throw; 
+            }
+        }
+
+        public async Task<int> DiminuirQuantidadeProdutoAComanda(int comandaId, int produtoId, int quantidadeAdicional)
+        {
+            try
+            {
+                var comandaProduto = await _dbConnection.Table<ComandaProduto>()
+                    .Where(cp => cp.ComandaId == comandaId && cp.ProdutoId == produtoId)
+                    .FirstOrDefaultAsync();
+
+                if (comandaProduto != null)
+                {
+                    comandaProduto.QuantidadeDeProduto -= quantidadeAdicional;
+                    return await _dbConnection.UpdateAsync(comandaProduto);
+                }
+                else
+                {
+                    throw new InvalidOperationException("O ComandaProduto especificado não foi encontrado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao adicionar quantidade de produto à comanda: {ex.Message}");
+                throw; 
+            }
+        }
     }
 }
+

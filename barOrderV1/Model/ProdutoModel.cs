@@ -29,7 +29,10 @@ namespace barOrderV1.Model
         [NotNull]
         public int QuantidadeCritica { get; set; }
 
-        
+        [Ignore]
+        public int QuantidadeDeProduto { get; set; }
+
+
     }
 
 

@@ -18,7 +18,6 @@
 
     <ContentPage.Resources>
         <Style TargetType="Frame">
-            <!--<Setter Property="Margin" Value="5" />-->
             <Setter Property="Padding" Value="0" />
             <Setter Property="BackgroundColor" Value="Transparent" />
             <Setter Property="CornerRadius" Value="10" />
@@ -34,21 +33,13 @@
 
 
         </Style>
-        
+
     </ContentPage.Resources>
 
 
-    <Grid Margin="5">
-        
-        
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height=".1*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>-->
-        
-        <!--<Label Text="Produtos" HorizontalOptions="CenterAndExpand" FontSize="Medium" Grid.Row="0"/>-->
+    <Grid Margin="10" HorizontalOptions="Center">
 
-        <CollectionView ItemsSource="{Binding ProdutosPopUp}" EmptyView="Sem produtos cadastrados"  
+        <CollectionView ItemsSource="{Binding ProdutosPopUp}" EmptyView="Nenhum produto disponivel" 
                 SelectedItem="{Binding ProdutoEditavel, Mode=TwoWay}">
 
             <CollectionView.ItemsLayout>
@@ -58,11 +49,11 @@
                 <DataTemplate>
                     <Frame BackgroundColor="#1935ff" BorderColor="Black">
 
+
                         <!--<StackLayout Orientation="Horizontal">-->
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width=".5*"/>
-                                <ColumnDefinition Width=".2*"/>
+                                <ColumnDefinition Width=".7*"/>
                                 <ColumnDefinition Width=".2*"/>
                                 <ColumnDefinition Width=".1*"/>
 
@@ -70,30 +61,25 @@
 
 
                             <Frame Grid.Column="0" >
+
+                                <Label Text="{Binding Nome}"/>
+                            </Frame>
+
+                            <Frame Grid.Column="1" Padding="0" BorderColor="Transparent">
+                                <Label Text="{Binding Preco, StringFormat='R${0}'}" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <Frame Grid.Column="3">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer 
-Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProdutosPopUpViewModel}}, Path=AdicionarProdutoAComandaCommand}"
- CommandParameter="{Binding .}"/>
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProdutosPopUpViewModel}}, Path=AdicionarProdutoAComandaCommand}"
+                                        CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
-                                <Label Text="{Binding Nome}"/>
-                        </Frame>
-                        
-
-                        <Frame Grid.Column="1">
-                                <Label Text="R$" FontSize="Small" />
-                        </Frame>
-
-                        <Frame Grid.Column="2">
-                            <Label Text="{Binding Preco}" HorizontalOptions="Center" />
-                        </Frame>
-
-                        <Frame Grid.Column="3">
-                                
                                 <Image Source="adicionargo.png" WidthRequest="18" HeightRequest="18"/>
-                        </Frame>
+                            </Frame>
+
                         </Grid>
                     </Frame>
-                    <!--</StackLayout>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

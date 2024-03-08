@@ -4,6 +4,7 @@ using barOrderV1.Services;
 using barOrderV1.View.Comandas;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +24,11 @@ namespace barOrderV1.ViewModel.Comandas
 
 
         [ObservableProperty]
-        private ComandaModel? _comandaEditavel;
+        public ComandaModel? _comandaEditavel;
+
+        [ObservableProperty]
+        private ProdutoModel _incremento;
+
         public ComandaModel? ComandaModel { get; private set; }
 
         public ComandaAbertaViewModel(IComandaService comandaService, IProdutoService produtoService, IComandaProdutoService comandaProdutoService, ComandaModel comandaEditavel)
@@ -33,6 +38,8 @@ namespace barOrderV1.ViewModel.Comandas
             _comandaService = comandaService;
             _produtoService = produtoService;
             Task.Run(GetComandaProdutosAsync);
+            Task.Run(AtualizarTotal);
+
         }
 
         public ComandaAbertaViewModel()
@@ -84,40 +91,38 @@ namespace barOrderV1.ViewModel.Comandas
         [RelayCommand]
         public async Task GetComandaProdutosAsync()
         {
-            ComandaModel comandaAdicionar = ComandaEditavel;
-
             try
             {
-                // Inicializa os serviços
+                await _comandaService.InitializeAsync();
                 await _comandaProdutoService.InitializeAsync();
                 await _produtoService.InitializeAsync();
 
-                // Obtém os itens de comanda
                 var comandasProdutos = await _comandaProdutoService.GetComandaProdutos();
 
-                // Limpa a lista de produtos da comanda
                 ProdutosNaComanda.Clear();
+                ComandaProdutoAdicionados.Clear(); 
 
-                // Adiciona os itens de comanda à lista
-                // Adiciona os itens de comanda à lista
                 foreach (var comandaProduto in comandasProdutos)
                 {
-                    if (comandaProduto.ComandaId == comandaAdicionar.Id)
+                    if (comandaProduto.ComandaId == ComandaEditavel.Id)
                     {
-                        // Adiciona o item de comanda à lista
                         ComandaProdutoAdicionados.Add(comandaProduto);
 
-                        // Obtém o produto associado a este item de comanda
                         var produto = await _produtoService.GetProdutoPorId(comandaProduto.ProdutoId);
 
-                        // Se o produto não for nulo, adiciona-o à lista de produtos da comanda
                         if (produto != null)
                         {
                             ProdutosNaComanda.Add(produto);
+
+                            produto.QuantidadeDeProduto = comandaProduto.QuantidadeDeProduto;
                         }
                     }
                 }
 
+                // Após iterar sobre todos os produtos, atualize o total da comanda baseado nos produtos
+                //ComandaEditavel.Total = ProdutosNaComanda.Sum(p => p.Preco * p.QuantidadeDeProduto);
+                await AtualizarTotal();
+                await _comandaService.UpdateComanda(ComandaEditavel);
             }
             catch (Exception ex)
             {
@@ -125,9 +130,150 @@ namespace barOrderV1.ViewModel.Comandas
             }
         }
 
+        public async Task AtualizarTotal()
+        {
+            ComandaEditavel.Total = ProdutosNaComanda.Sum(p => p.Preco * p.QuantidadeDeProduto);
+
+        }
+
+        [RelayCommand]
+        public async Task IncrementarQuantidadeProduto(ProdutoModel produto)
+        {
+            try
+            {
+                var result = await Shell.Current.DisplayAlert("Adicionar", $"Adicionar: \n\n \"{produto.Nome}\" ?", "Sim", "Não");
+
+                if (result)
+                {
+                    var comandaId = Convert.ToInt32(ComandaEditavel.Id);
+                    var produtoId = Convert.ToInt32(produto.Id);
+
+                    var prod = await _produtoService.GetProdutoPorId(produtoId);
+
+                    int quantidadeEstoque = prod.QuantidadeEstoque;
+                    int quantidadeAdicionada = 0;
+
+                    foreach (var comandaProduto in ComandaProdutoAdicionados)
+                    {
+                        if (comandaProduto.ComandaId == comandaId && comandaProduto.ProdutoId == produtoId)
+                        {
+                            quantidadeAdicionada = comandaProduto.QuantidadeDeProduto;
+                            break;
+                        }
+                    }
+
+                    int quantidadeSolicitada = 1; // Por enquanto, estamos adicionando apenas 1 unidade
+
+
+                    if (prod.QuantidadeEstoque >= quantidadeSolicitada)
+                    {
+                        if (prod.QuantidadeEstoque == 1)
+                        {
+                            await Shell.Current.DisplayAlert("Aviso", $"Ultimo: \n\n \"{prod.Nome}\" em estoque !", "Ok");
+
+                        }
+                         else if (prod.QuantidadeEstoque <= prod.QuantidadeCritica + 1)
+                        {
+                            
+                            await Shell.Current.DisplayAlert("Aviso", "Produto em quantidade critica!", "Ok");
+
+                        }
+
+                        await _comandaProdutoService.AdicionarQuantidadeProdutoAComanda(comandaId, produtoId, 1);
+                        await GetComandaProdutosAsync();
+
+                        // Atualizar quantidade em estoque do produto
+                        prod.QuantidadeEstoque -= 1;
+                        await _produtoService.UpdateProduto(prod);
+
+                        MessagingCenter.Send(this, "ProdutoAtualizado");
+
+                        await AtualizarTotal();
+
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Aviso", "Quantidade excede o estoque disponível.", "OK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao incrementar quantidade de produto na ViewModel: {ex.Message}");
+            }
+        }
 
 
 
+        [RelayCommand]
+        public async Task DecrementarQuantidadeProduto(ProdutoModel produto)
+        {
+            try
+            {
+                var result = await Shell.Current.DisplayAlert("Remover", $"Remover: \n\n \"{produto.Nome}\" ?", "Sim", "Não");
+
+                if (result)
+                {
+                    var comandaId = Convert.ToInt32(ComandaEditavel.Id);
+                    var produtoId = Convert.ToInt32(produto.Id);
+
+                    var prod = await _produtoService.GetProdutoPorId(produtoId);
+
+                    int quantidadeEstoque = prod.QuantidadeEstoque;
+                    int quantidadeAdicionada = 0;
+
+                    foreach (var comandaProduto in ComandaProdutoAdicionados)
+                    {
+                        if (comandaProduto.ComandaId == comandaId && comandaProduto.ProdutoId == produtoId)
+                        {
+                            quantidadeAdicionada = comandaProduto.QuantidadeDeProduto;
+                            break;
+                        }
+                    }
+
+                    int quantidadeSolicitada = 1; // Por enquanto, estamos adicionando apenas 1 unidade
+
+
+                    if (quantidadeAdicionada > 1)
+                    {
+
+                        await _comandaProdutoService.DiminuirQuantidadeProdutoAComanda(comandaId, produtoId, 1);
+                        await GetComandaProdutosAsync();
+
+                        // Atualizar quantidade em estoque do produto
+                        prod.QuantidadeEstoque += 1;
+                        await _produtoService.UpdateProduto(prod);
+
+                        MessagingCenter.Send(this, "ProdutoAtualizado");
+
+                        await AtualizarTotal();
+
+                    }
+                    else
+                    {
+                        // Remove o produto da comanda
+                        await _comandaProdutoService.RemoverProdutoDeComanda(comandaId, produtoId);
+                        await GetComandaProdutosAsync();
+
+                        // Exclui a linha correspondente no banco de dados
+                        // Agora, aqui você deve implementar o método para excluir a linha no banco de dados
+
+                        // Atualiza quantidade em estoque do produto
+                        prod.QuantidadeEstoque += 1;
+                        await _produtoService.UpdateProduto(prod);
+
+                        MessagingCenter.Send(this, "ProdutoAtualizado");
+
+                        await AtualizarTotal(); 
+                        await Shell.Current.DisplayAlert("Aviso", "Produto removido da comanda.", "OK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao incrementar quantidade de produto na ViewModel: {ex.Message}");
+            }
+        }
 
     }
 }

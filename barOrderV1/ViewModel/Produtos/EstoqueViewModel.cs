@@ -2,6 +2,7 @@
 using barOrderV1.Model.Enums;
 using barOrderV1.Services;
 using barOrderV1.View;
+using barOrderV1.ViewModel.Comandas;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -30,6 +31,16 @@ namespace barOrderV1.ViewModel
             });
 
             MessagingCenter.Subscribe<EstoqueDetailsViewModel>(this, "ProdutoDeletado", async (sender) =>
+            {
+                await GetProdutosAsync();
+            });
+
+            MessagingCenter.Subscribe<ComandaAbertaViewModel>(this, "ProdutoAtualizado", async (sender) =>
+            {
+                await GetProdutosAsync();
+            });
+
+            MessagingCenter.Subscribe<ProdutosPopUpViewModel>(this, "ProdutoAtualizado", async (sender) =>
             {
                 await GetProdutosAsync();
             });

@@ -16,8 +16,15 @@ namespace barOrderV1.Services
         Task<List<ProdutoModel>> GetProdutos();
 
         Task<List<ComandaProduto>> GetComandaProdutos();
+        
 
-        Task<int> AdicionarProdutoAComanda(int comandaId, int produtoId);
+
+        Task<int> AdicionarProdutoAComanda(int comandaId, int produtoId, int quantidadeDeProduto);
+        Task<int> AdicionarQuantidadeProdutoAComanda(int comandaId, int produtoId, int quantidadeDeProduto);
+
+
         Task<int> RemoverProdutoDeComanda(int comandaId, int produtoId);
+        Task<int> DiminuirQuantidadeProdutoAComanda(int comandaId, int produtoId, int quantidadeDeProduto);
+
     }
 }

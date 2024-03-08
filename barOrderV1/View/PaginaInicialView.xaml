@@ -23,10 +23,7 @@
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
-        <SearchBar Grid.Row="0" HorizontalOptions="FillAndExpand" Placeholder="Digite o nome da comanda ..." Margin="10"/>
-
-
-
+        <SearchBar  Grid.Row="0" Placeholder="Nome do cliente ..." Margin="5" BackgroundColor="#00098c" TextColor="White" PlaceholderColor="White"/>
 
         <CollectionView x:Name="Comandas" ItemsSource="{Binding Comandas}" Grid.Row="1">
             <CollectionView.ItemsLayout>
@@ -37,8 +34,6 @@
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
-
-
                                 <SwipeItem Text="Deletar" BackgroundColor="Red"
                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PaginaInicialViewModel}}, Path=DeletarComandaCommand}"
                                      CommandParameter="{Binding .}"/>
@@ -52,11 +47,19 @@
                                     CommandParameter="{Binding .}"/>
                             </Frame.GestureRecognizers>
                             <StackLayout>
-                                <Label Text="{Binding Nome}" TextColor="Blue" FontSize="Medium" LineBreakMode="NoWrap" HorizontalOptions="Center"/>
-                                <FlexLayout Direction="Column">
-                                    <Label Text="{Binding DataAbertura, StringFormat='{0:dd/MM HH:mm}'}" TextColor="Blue" FontSize="Small"/>
-                                    <Label Text="{Binding Total, StringFormat='Total R$: {0:N2}'}" TextColor="Blue" FontSize="Small"/>
-                                </FlexLayout>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="33*"/>
+                                        <RowDefinition Height="33*"/>
+                                        <RowDefinition Height="33*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="{Binding Nome}" TextColor="Blue" FontSize="Medium" LineBreakMode="NoWrap" HorizontalOptions="Start" Grid.Row="0" Margin="5"/>
+                                    <Label Text="{Binding DataAbertura, StringFormat='{0:dd/MM HH:mm}'}" TextColor="Blue" FontSize="Body" Grid.Row="1" Margin="5"/>
+                                    <Label Text="{Binding Total, StringFormat='Total R$: {0:N2}'}" TextColor="Blue" FontSize="Body" Grid.Row="2" Margin="5"/>
+
+                                </Grid>
+
                             </StackLayout>
                         </Frame>
                     </SwipeView>
@@ -67,21 +70,21 @@
 
 
 
-        <Frame BorderColor="Black" HasShadow="True" Padding="8" Grid.Row="2" Margin="10" BackgroundColor="#00098c" VerticalOptions="End" >
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding AddComandasCommand}" />
+        <Frame BorderColor="Black" HasShadow="True" Padding="8" Grid.Row="2" Margin="10" BackgroundColor="#00098c" VerticalOptions="End" CornerRadius="15">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding AddComandasCommand}" />
 
-                </Frame.GestureRecognizers>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width=".8*"/>
-                            <ColumnDefinition Width=".2*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Adicione novas comandas aqui" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Margin="2" Padding="2"/>
-                        <Image Source="adicionargo.png" Aspect="AspectFit" HeightRequest="25" WidthRequest="25" Grid.Column="1" HorizontalOptions="End"/>
-                    </Grid>
-            </Frame>
-        
+            </Frame.GestureRecognizers>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".8*"/>
+                    <ColumnDefinition Width=".2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Adicionar  comandas " TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Margin="-2" Grid.ColumnSpan="2" Padding="0"/>
+                <Image Source="adicionargo.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Grid.Column="1" HorizontalOptions="End"/>
+            </Grid>
+        </Frame>
+
 
 
 

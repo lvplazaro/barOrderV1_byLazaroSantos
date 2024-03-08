@@ -12,6 +12,7 @@ namespace barOrderV1.ViewModel
     public partial class PaginaInicialViewModel : BaseViewModel
     {
         private readonly IComandaService _comandaService;
+        private readonly IComandaProdutoService _comandaProdutoService;
 
         public ObservableCollection<ComandaModel> Comandas { get; set; } = new ObservableCollection<ComandaModel>();
 
@@ -35,9 +36,11 @@ namespace barOrderV1.ViewModel
         [ObservableProperty]
         public ComandaStatus _status;
 
-        public PaginaInicialViewModel(IComandaService comandaService)
+        public PaginaInicialViewModel(IComandaService comandaService, IComandaProdutoService comandaProdutoService)
         {
             _comandaService = comandaService;
+            _comandaProdutoService = comandaProdutoService;
+
             Task.Run(GetComandasAsync);
         }
 
@@ -130,6 +133,8 @@ namespace barOrderV1.ViewModel
                 try
                 {
                     await _comandaService.InitializeAsync();
+                    await _comandaProdutoService.InitializeAsync();
+
 
                     await _comandaService.DeleteComanda(comanda);
 

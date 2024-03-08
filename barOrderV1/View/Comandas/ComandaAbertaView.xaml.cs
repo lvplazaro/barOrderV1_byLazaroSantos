@@ -4,9 +4,19 @@ namespace barOrderV1.View.Comandas;
 
 public partial class ComandaAbertaView : ContentPage
 {
-	public ComandaAbertaView(ComandaAbertaViewModel comandaAbertaViewModel)
-	{
-		InitializeComponent();
-		BindingContext = comandaAbertaViewModel;
-	}
+    private readonly ComandaAbertaViewModel _comandaAbertaViewModel;
+
+    public ComandaAbertaView(ComandaAbertaViewModel comandaAbertaViewModel)
+    {
+        InitializeComponent();
+        _comandaAbertaViewModel = comandaAbertaViewModel; // Inicializa o _comandaAbertaViewModel
+        BindingContext = comandaAbertaViewModel;
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await _comandaAbertaViewModel.GetComandaProdutosAsync();
+    }
 }
+

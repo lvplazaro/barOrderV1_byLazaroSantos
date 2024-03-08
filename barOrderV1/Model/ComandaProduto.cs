@@ -15,5 +15,8 @@ namespace barOrderV1.Model
         public int ComandaId { get; set; }
 
         public int ProdutoId { get; set; }
+
+        public int QuantidadeDeProduto { get; set; }
+
     }
 }
