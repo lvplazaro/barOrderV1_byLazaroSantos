@@ -84,7 +84,6 @@ namespace barOrderV1.ViewModel.Comandas
 
                 var comandasProdutos = await _comandaProdutoService.GetComandaProdutos();
 
-                // Verifica se já existe um produto associado à comanda
                 bool produtoAssociado = comandasProdutos.Any(cp => cp.ComandaId == ComandaEditavel.Id && cp.ProdutoId == ProdutoAdicionado.Id);
 
                 if (produtoAssociado)
@@ -95,6 +94,16 @@ namespace barOrderV1.ViewModel.Comandas
                 }
                 else
                 {
+                    if (ProdutoAdicionado.QuantidadeEstoque == 1)
+                    {
+                        await Shell.Current.DisplayAlert("Aviso", $"Último: \n\n \"{ProdutoAdicionado.Nome}\" em estoque!", "Ok");
+                    }
+
+                    else if (ProdutoAdicionado.QuantidadeEstoque <= ProdutoAdicionado.QuantidadeCritica +1)
+                    {
+                        await Shell.Current.DisplayAlert("Aviso", "Produto em quantidade crítica!", "Ok");
+                    }
+
                     await _comandaProdutoService.AdicionarProdutoAComanda(ComandaEditavel.Id, ProdutoAdicionado.Id,1);
 
                     ProdutoAdicionado.QuantidadeEstoque -= 1;
@@ -102,11 +111,8 @@ namespace barOrderV1.ViewModel.Comandas
 
                     MessagingCenter.Send(this, "ProdutoAtualizado");
 
-                    if (ProdutoAdicionado.QuantidadeEstoque <= ProdutoAdicionado.QuantidadeCritica)
-                    {
-                        await Shell.Current.DisplayAlert("Aviso", "Produto em quantidade critica!", "Ok");
+                    
 
-                    }
 
                     await Shell.Current.DisplayAlert("Sucesso", "Produto adicionado à comanda com sucesso!", "Ok");
 

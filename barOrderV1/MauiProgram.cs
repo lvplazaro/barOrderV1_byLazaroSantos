@@ -42,13 +42,16 @@ namespace barOrderV1
             builder.Services.AddTransient<EditProdutoView>();
             builder.Services.AddTransient<EditProdutoViewModel>();
 
-            
-
             builder.Services.AddTransient<ComandaAbertaView>();
             builder.Services.AddTransient<ComandaAbertaViewModel>();
 
-
             builder.Services.AddTransient<ProdutosPopUpView, ProdutosPopUpViewModel>();
+            builder.Services.AddTransient<FechamentoDeComandaView, FechamentoDeComandaViewModel>();
+
+            builder.Services.AddTransient<ComandasFechadasView, ComandasFechadasViewModel>();
+
+
+
 
 #if DEBUG
             builder.Logging.AddDebug();

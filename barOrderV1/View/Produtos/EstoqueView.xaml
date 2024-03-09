@@ -46,7 +46,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="50" />
 
         </Grid.RowDefinitions>
 
@@ -160,24 +160,40 @@
         </Frame>
 
         <StackLayout  Grid.Row="4"  Grid.ColumnSpan="2" Margin="0,0,0,5">
-            <Frame BorderColor="Black" HasShadow="True" Padding="5" Margin="2" BackgroundColor="#00098c">
+            
+            <!--<Frame BorderColor="Black" HasShadow="True" Padding="5" Margin="2" BackgroundColor="#00098c">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding IrParaAddProdutosCommand}" />
 
                 </Frame.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                    <!-- Imagem -->
+                    --><!-- Imagem --><!--
                     <Image Source="plus.png" Margin="5,0,15,0" 
                                              Aspect="AspectFit" 
                                              HeightRequest="15" 
                                              WidthRequest="15"/>
 
-                    <!-- Texto -->
+                    --><!-- Texto --><!--
                     <Label Text="Adicione novos produtos aqui" TextColor="White"
                                                                VerticalOptions="Center" 
                                                                HorizontalOptions="Center"/>
                 </StackLayout>
+            </Frame>-->
+
+            <Frame BorderColor="Black" HasShadow="True" Padding="8" Margin="5" BackgroundColor="#00098c" VerticalOptions="End" CornerRadius="15" Grid.ColumnSpan="2">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding IrParaAddProdutosCommand}" />
+                </Frame.GestureRecognizers>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".8*"/>
+                        <ColumnDefinition Width=".2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Adicionar Produtos" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Margin="-2" Grid.ColumnSpan="2" Padding="0"/>
+                    <Image Source="adicionargo.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Grid.Column="1" HorizontalOptions="End"/>
+                </Grid>
             </Frame>
+            
         </StackLayout>
     </Grid>
 

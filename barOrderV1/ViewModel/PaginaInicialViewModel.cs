@@ -54,7 +54,7 @@ namespace barOrderV1.ViewModel
 
                 if (nome == null)
                 {
-                    return; // Retorna imediatamente sem continuar o processamento
+                    return; 
                 }
                 if (string.IsNullOrEmpty(nome))
                 {
@@ -67,7 +67,6 @@ namespace barOrderV1.ViewModel
                     Nome = nome,
                     DataAbertura = DateTime.Now,
                     DataFechamento = DateTime.Now.AddDays(2),
-                    //Produtos = null,
                     Total = 00.00,
                     FormaDePagamento = 0,
                     Status = 0,

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace barOrderV1.ViewModel.Comandas
 {
-    //[QueryProperty(nameof(ComandaEditavel), "ComandaObject")]
+    
     public partial class ComandaAbertaViewModel : BaseViewModel
     {
 
@@ -27,9 +27,8 @@ namespace barOrderV1.ViewModel.Comandas
         public ComandaModel? _comandaEditavel;
 
         [ObservableProperty]
-        private ProdutoModel _incremento;
+        private double _total;
 
-        public ComandaModel? ComandaModel { get; private set; }
 
         public ComandaAbertaViewModel(IComandaService comandaService, IProdutoService produtoService, IComandaProdutoService comandaProdutoService, ComandaModel comandaEditavel)
         {
@@ -38,7 +37,6 @@ namespace barOrderV1.ViewModel.Comandas
             _comandaService = comandaService;
             _produtoService = produtoService;
             Task.Run(GetComandaProdutosAsync);
-            Task.Run(AtualizarTotal);
 
         }
 
@@ -57,7 +55,7 @@ namespace barOrderV1.ViewModel.Comandas
         {
             if (ComandaEditavel == null)
             {
-                await Shell.Current.DisplayAlert("Erro", "Nenhum produto selecionado para edição.", "Ok");
+                await Shell.Current.DisplayAlert("Erro", "Nenhuma comanda selecionada para edição.", "Ok");
                 return;
             }
             try
@@ -119,8 +117,6 @@ namespace barOrderV1.ViewModel.Comandas
                     }
                 }
 
-                // Após iterar sobre todos os produtos, atualize o total da comanda baseado nos produtos
-                //ComandaEditavel.Total = ProdutosNaComanda.Sum(p => p.Preco * p.QuantidadeDeProduto);
                 await AtualizarTotal();
                 await _comandaService.UpdateComanda(ComandaEditavel);
             }
@@ -132,7 +128,7 @@ namespace barOrderV1.ViewModel.Comandas
 
         public async Task AtualizarTotal()
         {
-            ComandaEditavel.Total = ProdutosNaComanda.Sum(p => p.Preco * p.QuantidadeDeProduto);
+            Total = ComandaEditavel.Total = (ProdutosNaComanda.Sum(p => p.Preco * p.QuantidadeDeProduto));
 
         }
 
@@ -162,7 +158,7 @@ namespace barOrderV1.ViewModel.Comandas
                         }
                     }
 
-                    int quantidadeSolicitada = 1; // Por enquanto, estamos adicionando apenas 1 unidade
+                    int quantidadeSolicitada = 1; 
 
 
                     if (prod.QuantidadeEstoque >= quantidadeSolicitada)
@@ -182,7 +178,6 @@ namespace barOrderV1.ViewModel.Comandas
                         await _comandaProdutoService.AdicionarQuantidadeProdutoAComanda(comandaId, produtoId, 1);
                         await GetComandaProdutosAsync();
 
-                        // Atualizar quantidade em estoque do produto
                         prod.QuantidadeEstoque -= 1;
                         await _produtoService.UpdateProduto(prod);
 
@@ -202,7 +197,6 @@ namespace barOrderV1.ViewModel.Comandas
                 Console.WriteLine($"Erro ao incrementar quantidade de produto na ViewModel: {ex.Message}");
             }
         }
-
 
 
         [RelayCommand]
@@ -231,7 +225,7 @@ namespace barOrderV1.ViewModel.Comandas
                         }
                     }
 
-                    int quantidadeSolicitada = 1; // Por enquanto, estamos adicionando apenas 1 unidade
+                    int quantidadeSolicitada = 1;
 
 
                     if (quantidadeAdicionada > 1)
@@ -240,7 +234,6 @@ namespace barOrderV1.ViewModel.Comandas
                         await _comandaProdutoService.DiminuirQuantidadeProdutoAComanda(comandaId, produtoId, 1);
                         await GetComandaProdutosAsync();
 
-                        // Atualizar quantidade em estoque do produto
                         prod.QuantidadeEstoque += 1;
                         await _produtoService.UpdateProduto(prod);
 
@@ -251,14 +244,9 @@ namespace barOrderV1.ViewModel.Comandas
                     }
                     else
                     {
-                        // Remove o produto da comanda
                         await _comandaProdutoService.RemoverProdutoDeComanda(comandaId, produtoId);
                         await GetComandaProdutosAsync();
 
-                        // Exclui a linha correspondente no banco de dados
-                        // Agora, aqui você deve implementar o método para excluir a linha no banco de dados
-
-                        // Atualiza quantidade em estoque do produto
                         prod.QuantidadeEstoque += 1;
                         await _produtoService.UpdateProduto(prod);
 
@@ -274,6 +262,20 @@ namespace barOrderV1.ViewModel.Comandas
                 Console.WriteLine($"Erro ao incrementar quantidade de produto na ViewModel: {ex.Message}");
             }
         }
+
+        [RelayCommand]
+        Task FechamentoDeComanda(ComandaModel comandaEditar)
+        {
+            ProdutoService produtoService = new ProdutoService();
+            ComandaService comandaService = new ComandaService();
+            ComandaProdutoService comandaProdutoService = new ComandaProdutoService(comandaService, produtoService);
+
+
+            var fechamentoComandaViewModel = new FechamentoDeComandaViewModel(comandaService, produtoService, comandaProdutoService, comandaEditar);
+            var fechamentoComandaView = new FechamentoDeComandaView(fechamentoComandaViewModel);
+            return Shell.Current.Navigation.PushAsync(fechamentoComandaView);
+
+        }  
 
     }
 }

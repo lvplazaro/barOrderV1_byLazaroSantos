@@ -42,9 +42,30 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.RowSpan="3" Grid.Column="0" Source="comanda_aberta" Margin="15"/>
-            <Entry Placeholder="Nome da Comanda" Text="{Binding ComandaEditavel.Nome}" Grid.Column="1" Grid.Row="0" Margin="0"/>
+            
+            <Frame Grid.Column="1" Margin="0" Grid.Row="0" Padding="0" BorderColor="Transparent">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="20*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Entry Placeholder="Nome da Comanda" Text="{Binding ComandaEditavel.Nome}" Grid.Column="0" Margin="0"/>
+                    <Frame Grid.Column="1" BackgroundColor="Blue" Margin="5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding UpdateComandaCommand}"
+                                CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                        <Image Source="adicionargo.png" Margin="0" HeightRequest="15" WidthRequest="15" />
+                    </Frame>
+
+
+
+                </Grid>
+            </Frame>
             <Label Text="{Binding ComandaEditavel.DataAbertura, StringFormat='Data de Abertura: {0:dd/MM HH:mm}'}" Grid.Column="1" Grid.Row="1" Margin="1" Padding="0"/>
-            <Label Text="{Binding ComandaEditavel.Total, StringFormat='Total: {0:C}'}" Grid.Column="1" Grid.Row="2" Margin="1" Padding="0" FontSize="Large"/>
+            <Label Text="{Binding Total, StringFormat='Total: {0:C}'}" Grid.Column="1" Grid.Row="2" Margin="1" Padding="0" FontSize="Large"/>
         </Grid>
 
         <Frame Margin="5" BackgroundColor="#1935ff" Grid.Row="1" Padding="5">
@@ -103,7 +124,7 @@
 
         </Frame>
 
-        <Frame Margin="5" BackgroundColor="LightBlue" Grid.Row="2" Padding="1">
+        <Frame Margin="5" BackgroundColor="#1935ff" Grid.Row="2" Padding="1">
             <ScrollView Orientation="Horizontal">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -193,8 +214,22 @@
             </ScrollView>
         </Frame>
 
-        <Button Text="Salvar" Command="{Binding UpdateComandaCommand}" Margin="2" VerticalOptions="End" BackgroundColor="#00098c" Grid.Row="3"/>
 
+        <Frame BorderColor="Black" HasShadow="True" Padding="8" Margin="10" BackgroundColor="#00098c" VerticalOptions="End" CornerRadius="15" Grid.Row="3">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer 
+                    Command="{Binding FechamentoDeComandaCommand}"
+                    CommandParameter="{Binding ComandaEditavel}" />
+            </Frame.GestureRecognizers>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".8*"/>
+                    <ColumnDefinition Width=".2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Fechar Comanda" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Margin="-2" Grid.ColumnSpan="2" Padding="0"/>
+                <Image Source="adicionargo.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Grid.Column="1" HorizontalOptions="End"/>
+            </Grid>
+        </Frame>
 
 
     </Grid>
