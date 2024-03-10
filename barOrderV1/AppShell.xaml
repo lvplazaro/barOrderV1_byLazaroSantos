@@ -31,5 +31,23 @@
               ContentTemplate="{DataTemplate local:EstoqueView}"
               Route="EstoqueView"/>
 
+    <ShellContent Title="Relatório de Lucros" Icon="relatorio_lucros.png"
+          ContentTemplate="{DataTemplate local:RelatorioView}"
+          Route="RelatorioView"/>
+
+    <!--<ShellContent Title="Ajuda" Icon="ajuda.png"
+      ContentTemplate="{DataTemplate local:EstoqueView}"
+      Route="EstoqueView"/>
+
+    <ShellContent Title="Sobre" Icon="sobre.png"
+      ContentTemplate="{DataTemplate local:EstoqueView}"
+      Route="EstoqueView"/>-->
+
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout>
+            <Label Text="Versão 1.0" FontSize="Small" HorizontalTextAlignment="Center" TextColor="#000659" Margin="10,0"/>
+            <Label Text="2024" FontSize="Small" HorizontalTextAlignment="Center" TextColor="#000659" Margin="0,10"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
 
 </Shell>

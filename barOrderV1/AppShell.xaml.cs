@@ -17,6 +17,10 @@ namespace barOrderV1
             Routing.RegisterRoute(nameof(ComandaAbertaView), typeof(ComandaAbertaView));
             Routing.RegisterRoute(nameof(FechamentoDeComandaView), typeof(FechamentoDeComandaView));
             Routing.RegisterRoute(nameof(ComandasFechadasView), typeof(ComandasFechadasView));
+            Routing.RegisterRoute(nameof(ComandaFechadaView), typeof(ComandaFechadaView));
+            Routing.RegisterRoute(nameof(RelatorioView), typeof(RelatorioView));
+
+
 
 
 

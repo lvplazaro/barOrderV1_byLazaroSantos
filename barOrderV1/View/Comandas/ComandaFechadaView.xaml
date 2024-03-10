@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="barOrderV1.View.Comandas.ComandaFechadaView"
+             xmlns:vm="clr-namespace:barOrderV1.ViewModel.Comandas"
+             Title="ComandaFechadaView">
+
+
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label Text="Comanda Finalizada" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.BindingContext>
+        <vm:ComandaFechadaViewModel />
+    </ContentPage.BindingContext>
+
+    
+
+    <Grid Margin="5,5,0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".2*"/>
+            <RowDefinition Height=".5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".3*"/>
+                <ColumnDefinition Width=".7*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.RowSpan="3" Grid.Column="0" Source="comanda_fechada.png" Margin="15"/>
+
+            <Frame Grid.Column="1" Margin="2,10,10,-5" Grid.Row="0" Padding="0" BorderColor="Black">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="20*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding ComandaFinalizada.Nome}" Grid.Column="0" Margin="5"/>
+                </Grid>
+            </Frame>
+
+
+
+
+
+            <Label Text="{Binding ComandaFinalizada.DataAbertura, StringFormat='Data de Abertura: {0:dd/MM HH:mm}'}" Grid.Column="1" Grid.Row="1" Margin="1,10" Padding="0"/>
+            <Label Text="{Binding ComandaFinalizada.DataFechamento, StringFormat='Data de fechamento: {0:dd/MM HH:mm}'}" Grid.Column="1" Grid.Row="2" Margin="1" Padding="0"/>
+            <Label Text="{Binding ComandaFinalizada.FormaDePagamento, StringFormat='Tipo de Pagamento: {0}'}" Grid.Column="1" Grid.Row="3" Margin="1" Padding="0"/>
+
+            <Label Text="{Binding ComandaFinalizada.Total, StringFormat='Total: {0:C}'}" Grid.Column="1" Grid.Row="4" Margin="5" Padding="0" FontSize="Large"/>
+        </Grid>
+
+
+        <Frame Margin="5" BackgroundColor="#1935ff" Grid.Row="1" Padding="5">
+            <CollectionView ItemsSource="{Binding ProdutosNaComandaFinalizada}" EmptyView="Sem produtos cadastrados" HorizontalOptions="CenterAndExpand">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="White" BorderColor="Black" Margin="2" Padding="2">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".55*"/>
+                                    <ColumnDefinition Width=".2*"/>
+                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width=".1*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Frame Grid.Column="0" Margin="5" Padding="0" BorderColor="Transparent" >
+                                    <Label Text="{Binding Nome}"  TextColor="Black" FontSize="Small"/>
+                                </Frame>
+
+                                <Frame Grid.Column="1" Margin="5" Padding="0" BorderColor="Transparent">
+                                    <Label Text="{Binding Preco, StringFormat='R${0}'}" HorizontalOptions="Center" TextColor="Black" />
+                                </Frame>
+
+                                <Frame Grid.Column="2" Margin="5" Padding="0"  BorderColor="Transparent" Grid.ColumnSpan="2">
+
+                                    <Label Text="Quant." HorizontalOptions="Center" TextColor="Black" />
+                                </Frame>
+
+                                <Frame Grid.Column="4" Margin="4" Padding="0" BorderColor="Black">
+                                    <Label Text="{Binding QuantidadeDeProduto}" HorizontalOptions="Center" TextColor="Black" VerticalOptions="Center"/>
+                                </Frame>
+
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </Frame>
+
+    </Grid>
+
+</ContentPage>

@@ -3,6 +3,7 @@ using Microsoft.Maui.Controls;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,6 +123,11 @@ namespace barOrderV1.Services
                 Console.WriteLine($"Erro ao adicionar quantidade de produto à comanda: {ex.Message}");
                 throw; 
             }
+        }
+
+        public async Task<int> DeletarComanda(int comandaId)
+        {
+            return await _dbConnection.ExecuteAsync("DELETE FROM ComandaProduto WHERE ComandaId = ?", comandaId);
         }
     }
 }

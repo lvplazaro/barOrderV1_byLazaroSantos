@@ -100,7 +100,7 @@
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ComandaAbertaViewModel}}, Path=DecrementarQuantidadeProdutoCommand}"
                                             CommandParameter="{Binding .}"/>
                                     </Frame.GestureRecognizers>
-                                    <Label Text="-" HorizontalOptions="Center" TextColor="Black" />
+                                    <Label Text="-" HorizontalOptions="Center" TextColor="White" />
                                 </Frame>
 
                                 <Frame Grid.Column="3" Margin="5" Padding="0" BorderColor="Transparent">
@@ -113,7 +113,7 @@
                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ComandaAbertaViewModel}}, Path=IncrementarQuantidadeProdutoCommand}"
                                                 CommandParameter="{Binding .}"/>
                                     </Frame.GestureRecognizers>
-                                    <Label Text="+" HorizontalOptions="Center" TextColor="Black" />
+                                    <Label Text="+" HorizontalOptions="Center" TextColor="White" />
                                 </Frame>
                             </Grid>
                         </Frame>

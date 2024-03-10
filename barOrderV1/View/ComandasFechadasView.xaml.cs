@@ -2,18 +2,6 @@ using barOrderV1.ViewModel;
 
 namespace barOrderV1.View;
 
-//public partial class ComandasFechadasView : ContentPage
-//{
-//    public ComandasFechadasView(ComandasFechadasViewModel comandasFechadasViewModel)
-//    {
-//        InitializeComponent();
-//        BindingContext = comandasFechadasViewModel;
-//    }
-//}
-
-
-
-
 public partial class ComandasFechadasView : ContentPage
 {
     private readonly ComandasFechadasViewModel _comandasFechadasViewModel;

@@ -122,33 +122,7 @@ namespace barOrderV1.ViewModel
             }
         }
 
-        [RelayCommand]
-        public async Task DeletarComanda(ComandaModel comanda)
-        {
-            var result = await Shell.Current.DisplayAlert("Deletar", $"Confirma exclusão da comanda: \n\n \"{comanda.Nome}\" ?", "Sim", "Não");
-
-            if (result is true)
-            {
-                try
-                {
-                    await _comandaService.InitializeAsync();
-                    await _comandaProdutoService.InitializeAsync();
-
-
-                    await _comandaService.DeleteComanda(comanda);
-
-                    await Shell.Current.DisplayAlert("Sucesso", "Comanda deletada com sucesso!", "Ok");
-
-                    await GetComandasAsync();
-
-                }
-                catch (Exception ex)
-                {
-                    await Shell.Current.DisplayAlert("Erro", ex.Message, "Ok");
-                }
-            }
-
-        }
+        
     }
 }
 
