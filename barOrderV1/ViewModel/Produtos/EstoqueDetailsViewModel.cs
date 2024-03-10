@@ -15,7 +15,6 @@ namespace barOrderV1.ViewModel
     {
         private readonly IProdutoService _produtoService;
 
-        //public AddProdutoViewModel AddProdutoViewModel { get; set; }
 
         [ObservableProperty]
         public string? _categoriaSelecionada;
@@ -90,7 +89,6 @@ namespace barOrderV1.ViewModel
 
         private void DeterminarImagemCategoria(CategoriaProduto categoria)
         {
-            // Lógica para determinar a imagem com base na categoria
             switch (categoria)
             {
                 case CategoriaProduto.CervejaLata:
@@ -124,11 +122,7 @@ namespace barOrderV1.ViewModel
                 case CategoriaProduto.Outros:
                     ImagemSelecionada = "outros.png";
                     break;
-
-
-                    //default:
-                    //    ImagemCategoria = "imagem_padrao.png"; // Imagem padrão caso a categoria não seja encontrada
-                    //    break;
+                    
             }
         }
 

@@ -8,7 +8,6 @@ namespace barOrderV1.Model.Enums
 {
     public enum ComandaStatus : int
     {
-
         Aberta = 0,
         Fechada = 1,
     }

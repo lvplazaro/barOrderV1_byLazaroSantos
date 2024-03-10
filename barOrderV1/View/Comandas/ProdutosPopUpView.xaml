@@ -48,9 +48,6 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BackgroundColor="#1935ff" BorderColor="Black">
-
-
-                        <!--<StackLayout Orientation="Horizontal">-->
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width=".7*"/>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="barOrderV1.View.Outros.AjudaView"
+             Title="AjudaView">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label Text="Ajuda" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                
+
+            </Grid.RowDefinitions>
+
+
+        <Frame BackgroundColor="#1935ff" Margin="10" Grid.Row="0" Padding="0">
+            <ScrollView>
+                
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="65*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="90*"/>
+                </Grid.ColumnDefinitions>
+
+                    <Frame Background="#000659" Margin="5" Padding="0" Grid.Column="0" Grid.RowSpan="2">
+                    <Label Text="1" TextColor="white" Margin="5" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Frame>
+
+                <Label Text="Inicio" TextColor="White" FontSize="Body" Grid.Row="0" Grid.Column="1" Margin="5,5,0,0" Padding="0"/>
+
+                <Label Text="Adicione seus produtos na aba estoque, fornecendo os valores de preço, categoria, quantidade de produtos e quantidade critica, onde o aplicativo informará a quantidade de produtos restantes." TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Margin="0,5,5,5" Padding="5"/>
+
+            </Grid>
+            </ScrollView>
+
+        </Frame>
+
+
+        <Frame BackgroundColor="#1935ff" Margin="10" Grid.Row="1" Padding="0">
+            <ScrollView>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="65*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="90*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Background="#000659" Margin="5" Padding="0" Grid.Column="0" Grid.RowSpan="2">
+                        <Label Text="2" TextColor="white" Margin="5" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Frame>
+
+                    <Label Text="Comandas" TextColor="White" FontSize="Body" Grid.Row="0" Grid.Column="1" Margin="5,5,0,0" Padding="0"/>
+
+                    <Label Text="Na pagina inicial, após clicar em adicionar comandas e informar o nome do cliente, adicione produtos, escolhendo-os de acordo com a categoria. Produtos em falta no estoque não serão exibidos na hora de adiciona-los a comanda." TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Margin="0,5,5,5" Padding="5"/>
+
+                </Grid>
+            </ScrollView>
+
+        </Frame>
+
+        <Frame BackgroundColor="#1935ff" Margin="10" Grid.Row="2" Padding="0">
+            <ScrollView>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="65*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="90*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Background="#000659" Margin="5" Padding="0" Grid.Column="0" Grid.RowSpan="2">
+                        <Label Text="3" TextColor="white" Margin="5" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Frame>
+
+                    <Label Text="Finalizar Atendimento" TextColor="White" FontSize="Body" Grid.Row="0" Grid.Column="1" Margin="5,5,0,0" Padding="0"/>
+
+                    <Label Text="Após acessar uma comanda e realizar o atendimento, clique em fechar comanda. Informe a forma de pagamento do cliente para finalizar o atendimento." TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Margin="0,5,5,5" Padding="5"/>
+
+                </Grid>
+            </ScrollView>
+
+        </Frame>
+
+        <Frame BackgroundColor="#1935ff" Margin="10" Grid.Row="3" Padding="0">
+            <ScrollView>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="65*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="90*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Background="#000659" Margin="5" Padding="0" Grid.Column="0" Grid.RowSpan="2">
+                        <Label Text="4" TextColor="white" Margin="5" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Frame>
+
+                    <Label Text="Comandas Fechadas" TextColor="White" FontSize="Body" Grid.Row="0" Grid.Column="1" Margin="5,5,0,0" Padding="0"/>
+
+                    <Label Text="Através do menu lateral é possivel acessar a pagina de comandas fechadas. Em comandas fechadas é possivel acessa-las novamente para verificar quais produtos e sua quantidade foram consumidos pelo cliente." TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Margin="0,5,5,5" Padding="5"/>
+
+                </Grid>
+            </ScrollView>
+
+        </Frame>
+
+        <Frame BackgroundColor="#1935ff" Margin="10" Grid.Row="4" Padding="0">
+            <ScrollView>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="65*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="90*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Background="#000659" Margin="5" Padding="0" Grid.Column="0" Grid.RowSpan="2">
+                        <Label Text="5" TextColor="white" Margin="5" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Frame>
+
+                    <Label Text="Relatório de lucros" TextColor="White" FontSize="Body" Grid.Row="0" Grid.Column="1" Margin="5,5,0,0" Padding="0"/>
+
+                    <Label Text="Em relatório de lucros, informe a data e hora inicial e final para filtrar os valores recebidos atraves de comandas fechadas no periodo selecionado." TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Margin="0,5,5,5" Padding="5"/>
+
+                </Grid>
+            </ScrollView>
+
+        </Frame>
+
+
+
+    </Grid>
+
+</ContentPage>

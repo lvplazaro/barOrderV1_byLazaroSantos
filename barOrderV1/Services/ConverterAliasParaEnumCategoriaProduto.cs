@@ -11,7 +11,6 @@ namespace barOrderV1.Services
         {
             if (value is string categoriaString)
             {
-                // Converte a string para um valor do enum CategoriaProduto
                 if (Enum.TryParse(typeof(CategoriaProduto), categoriaString, out object categoriaProduto))
                 {
                     return ((CategoriaProduto)categoriaProduto).GetAlias();

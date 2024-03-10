@@ -160,26 +160,7 @@
         </Frame>
 
         <StackLayout  Grid.Row="4"  Grid.ColumnSpan="2" Margin="0,0,0,5">
-            
-            <!--<Frame BorderColor="Black" HasShadow="True" Padding="5" Margin="2" BackgroundColor="#00098c">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding IrParaAddProdutosCommand}" />
-
-                </Frame.GestureRecognizers>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                    --><!-- Imagem --><!--
-                    <Image Source="plus.png" Margin="5,0,15,0" 
-                                             Aspect="AspectFit" 
-                                             HeightRequest="15" 
-                                             WidthRequest="15"/>
-
-                    --><!-- Texto --><!--
-                    <Label Text="Adicione novos produtos aqui" TextColor="White"
-                                                               VerticalOptions="Center" 
-                                                               HorizontalOptions="Center"/>
-                </StackLayout>
-            </Frame>-->
-
+       
             <Frame BorderColor="Black" HasShadow="True" Padding="8" Margin="5" BackgroundColor="#00098c" VerticalOptions="End" CornerRadius="15" Grid.ColumnSpan="2">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding IrParaAddProdutosCommand}" />

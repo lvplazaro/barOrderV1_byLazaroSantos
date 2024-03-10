@@ -59,9 +59,6 @@
                         </Frame.GestureRecognizers>
                         <Image Source="adicionargo.png" Margin="0" HeightRequest="15" WidthRequest="15" />
                     </Frame>
-
-
-
                 </Grid>
             </Frame>
             <Label Text="{Binding ComandaEditavel.DataAbertura, StringFormat='Data de Abertura: {0:dd/MM HH:mm}'}" Grid.Column="1" Grid.Row="1" Margin="1" Padding="0"/>

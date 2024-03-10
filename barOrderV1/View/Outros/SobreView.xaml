@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="barOrderV1.View.Outros.SobreView"
+             Title="SobreView">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label Text="Sobre" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <Frame  Margin="50,100,50,100" BackgroundColor="#1935ff">
+        <VerticalStackLayout>
+            <Label Text="barOrder" HorizontalOptions="Center" TextColor="white" FontSize="Medium" Margin="10,15,10,0"/>
+
+            <Label Text="Versão 1.0 2024" VerticalOptions="End" HorizontalOptions="Center" TextColor="white" FontSize="Small" Margin="10,5,10,50"/>
+
+            <Label Text="Aplicativo de gerenciamento de estoque e comandas para bares locais desenvolvido como projeto de trabalho de conclusão de curso para a ETEC Itapevi." 
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
+
+            <Label Text="Desenvolvido por" TextColor="White" Margin="0,100,10,10"/>
+            <Label Text="Lázaro Souza Santos" TextColor="White" Margin="0,0,10,10"/>
+
+            
+
+
+        </VerticalStackLayout>
+    </Frame>
+    
+</ContentPage>

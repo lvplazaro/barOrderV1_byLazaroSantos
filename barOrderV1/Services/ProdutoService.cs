@@ -61,9 +61,8 @@ namespace barOrderV1.Services
             }
             catch (Exception ex)
             {
-                // Trate a exceção conforme necessário
                 Console.WriteLine($"Erro ao recuperar produtos por categoria: {ex.Message}");
-                return new List<ProdutoModel>(); // Retorna uma lista vazia em caso de erro
+                return new List<ProdutoModel>(); 
             }
         }
 
@@ -71,19 +70,16 @@ namespace barOrderV1.Services
         {
             try
             {
-                // Consulta o banco de dados para encontrar o produto com o ID fornecido
                 var produto = await _dbConnection.Table<ProdutoModel>()
                                                 .Where(p => p.Id == produtoId)
                                                 .FirstOrDefaultAsync();
 
-                // Retorna o produto encontrado (ou null se não encontrado)
                 return produto;
             }
             catch (Exception ex)
             {
-                // Trate qualquer exceção que possa ocorrer durante a consulta ao banco de dados
                 Console.WriteLine($"Erro ao obter produto por ID: {ex.Message}");
-                return null; // Retorna null em caso de erro
+                return null; 
             }
         }
 

@@ -26,6 +26,17 @@ namespace barOrderV1.ViewModel
             Task.Run(GetComandasFechadasAsync);
         }
 
+        private string _nomePesquisado;
+        public string NomePesquisado
+        {
+            get => _nomePesquisado;
+            set
+            {
+                SetProperty(ref _nomePesquisado, value);
+                GetComandasFechadasAsync();
+            }
+        }
+
 
 
         public async Task GetComandasFechadasAsync()
@@ -94,6 +105,39 @@ namespace barOrderV1.ViewModel
                 {
                     await Shell.Current.DisplayAlert("Erro", ex.Message, "Ok");
                 }
+            }
+        }
+
+        [RelayCommand]
+        public async Task SearchBarPaginaInicial(string NomePesquisado)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(NomePesquisado))
+                {
+                    var foundComandas = ComandasFechadas.Where(found => found.Nome.Contains(NomePesquisado)).ToList();
+                    if (foundComandas.Count > 0)
+                    {
+                        ComandasFechadas.Clear();
+                        foreach (var comanda in foundComandas)
+                        {
+                            ComandasFechadas.Add(comanda);
+                        }
+                    }
+
+
+                }
+
+
+                else
+                {
+                    await GetComandasFechadasAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
             }
         }
 

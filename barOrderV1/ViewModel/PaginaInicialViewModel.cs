@@ -19,6 +19,17 @@ namespace barOrderV1.ViewModel
         [ObservableProperty]
         public string? _nome;
 
+        private string _nomePesquisado;
+        public string NomePesquisado
+        {
+            get => _nomePesquisado;
+            set
+            {
+                SetProperty(ref _nomePesquisado, value);
+                GetComandasAsync();
+            }
+        }
+
         [ObservableProperty]
         public DateTime _dataAbertura;
 
@@ -42,6 +53,7 @@ namespace barOrderV1.ViewModel
             _comandaProdutoService = comandaProdutoService;
 
             Task.Run(GetComandasAsync);
+
         }
 
 
@@ -122,7 +134,42 @@ namespace barOrderV1.ViewModel
             }
         }
 
-        
-    }
+        [RelayCommand]
+        public async Task SearchBarPaginaInicial(string NomePesquisado)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(NomePesquisado))
+                {
+                    var foundComandas = Comandas.Where(found => found.Nome.Contains(NomePesquisado)).ToList();
+                    if (foundComandas.Count > 0)
+                    {
+                        Comandas.Clear();
+                        foreach (var comanda in foundComandas)
+                        {
+                            Comandas.Add(comanda);
+                        }
+                    }
+
+
+                }
+
+              
+                else
+                {
+                    await GetComandasAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
+            }
+        }
+
+    
+
+
+}
 }
 

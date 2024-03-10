@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:barOrderV1.View"
+    xmlns:outros="clr-namespace:barOrderV1.View.Outros"
     BackgroundColor="DarkBlue"
     Shell.FlyoutBehavior="Flyout"
     Title="barOrder">
@@ -35,13 +36,13 @@
           ContentTemplate="{DataTemplate local:RelatorioView}"
           Route="RelatorioView"/>
 
-    <!--<ShellContent Title="Ajuda" Icon="ajuda.png"
-      ContentTemplate="{DataTemplate local:EstoqueView}"
-      Route="EstoqueView"/>
+    <ShellContent Title="Ajuda" Icon="ajuda.png"
+      ContentTemplate="{DataTemplate outros:AjudaView}"
+      Route="AjudaView"/>
 
     <ShellContent Title="Sobre" Icon="sobre.png"
-      ContentTemplate="{DataTemplate local:EstoqueView}"
-      Route="EstoqueView"/>-->
+      ContentTemplate="{DataTemplate outros:SobreView}"
+      Route="SobreView"/>
 
     <Shell.FlyoutFooter>
         <VerticalStackLayout>
