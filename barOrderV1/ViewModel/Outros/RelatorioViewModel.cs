@@ -18,6 +18,10 @@ namespace barOrderV1.ViewModel
 
         public RelatorioViewModel(IComandaService comandaService)
         {
+            SelectedDateInicial = DateTime.Today;
+            SelectedDateFinal = DateTime.Today;
+
+
             _comandaService = comandaService;
             Task.Run(GetComandasFechadasAsync);
         }
@@ -70,7 +74,7 @@ namespace barOrderV1.ViewModel
 
                 if (comandas.Any())
                 {
-                    foreach (var comanda in comandas.Where(c => c.Status == Model.Enums.ComandaStatus.Fechada).OrderByDescending(c => c.DataFechamento))
+                    foreach (var comanda in comandas.Where(c => c.Status == ComandaStatus.Fechada).OrderByDescending(c => c.DataFechamento))
                     {
                         ComandasFechadas.Add(comanda);
                     }
@@ -87,6 +91,7 @@ namespace barOrderV1.ViewModel
         {
             try
             {
+                await GetComandasFechadasAsync();
                 double dinheiroTotal = 0;
                 double creditoTotal = 0;
                 double debitoTotal = 0;
@@ -144,6 +149,20 @@ namespace barOrderV1.ViewModel
                 Outros = outrosTotal;
 
                 LucroTotal = dinheiroTotal + creditoTotal + debitoTotal + pixTotal + outrosTotal;
+
+                if(LucroTotal == 0)
+                {
+                    await Shell.Current.DisplayAlert("Aviso", "Nenhuma comanda no periodo selecionado", "Ok");
+
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Aviso", "Valores atualizados", "Ok");
+
+                }
+
+
+
             }
             catch (Exception ex)
             {

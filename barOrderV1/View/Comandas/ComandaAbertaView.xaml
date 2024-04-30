@@ -51,13 +51,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Entry Placeholder="Nome da Comanda" Text="{Binding ComandaEditavel.Nome}" Grid.Column="0" Margin="0"/>
-                    <Frame Grid.Column="1" BackgroundColor="Blue" Margin="5">
+                    <Frame Grid.Column="1" BackgroundColor="Blue" Margin="5" Padding="0">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer 
                                 Command="{Binding UpdateComandaCommand}"
                                 CommandParameter="{Binding .}"/>
                         </Frame.GestureRecognizers>
-                        <Image Source="adicionargo.png" Margin="0" HeightRequest="15" WidthRequest="15" />
+                        <Image Source="adicionargo.png" Margin="0" HeightRequest="15" WidthRequest="15"/>
                     </Frame>
                 </Grid>
             </Frame>

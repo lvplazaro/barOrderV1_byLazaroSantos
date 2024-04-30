@@ -10,6 +10,19 @@ namespace barOrderV1
         {
             InitializeComponent();
 
+            var getuserSavedkey = Preferences.Get("UserAlreadyLoggedIn", false);
+
+            if (getuserSavedkey == true)
+            {
+                MyAppShell.CurrentItem = MyMainPage;
+            }
+            else
+            {
+                MyAppShell.CurrentItem = MyLoginPage;
+
+            }
+
+
             Routing.RegisterRoute(nameof(EditProdutoView), typeof(EditProdutoView));
             Routing.RegisterRoute(nameof(EstoqueDetailsView), typeof(EstoqueDetailsView));
             Routing.RegisterRoute(nameof(AddProdutoView), typeof(AddProdutoView));
@@ -24,6 +37,8 @@ namespace barOrderV1
             Routing.RegisterRoute(nameof(SobreView), typeof(SobreView));
 
 
+            Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
+            Routing.RegisterRoute(nameof(ConfigView), typeof(ConfigView));
 
 
 

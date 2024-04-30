@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
 
-        <Frame BackgroundColor="#1935ff" Grid.Row="0" Margin="20,10,20,10">
+        <Frame BackgroundColor="#1935ff" Grid.Row="0" Margin="20,10,20,10" Padding="0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -37,18 +37,18 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Data Inicial" TextColor="White" Grid.Row="0" Grid.Column="0" Margin="0,10,0,15"/>
+                <Label Text="Data Inicial" TextColor="White" Grid.Row="0" Grid.Column="0" Margin="10,10,0,15"/>
 
-                <DatePicker MinimumDate="01/01/2024" Grid.Row="0" Grid.Column="1" TextColor="White" Margin="0" Format="dd/MM" Date="{Binding SelectedDateInicial}"/>
+                <DatePicker MinimumDate="01/01/2024" Grid.Row="0" Grid.Column="1" TextColor="White" Margin="0" Format="dd/MM" Date="{Binding SelectedDateInicial}" HorizontalOptions="Center"/>
 
-                <Label Text="Hora Inicial" TextColor="White" Grid.Row="1" Grid.Column="0" Margin="0,10,0,15"/>
+                <Label Text="Hora Inicial" TextColor="White" Grid.Row="1" Grid.Column="0" Margin="10,10,0,15"/>
 
-                <TimePicker Grid.Row="1" Grid.Column="1" TextColor="White" Format="HH:mm" Time="{Binding SelectedTimeInicial}"/>
+                <TimePicker Grid.Row="1" Grid.Column="1" TextColor="White" Format="HH:mm" Time="{Binding SelectedTimeInicial}" HorizontalOptions="Center"/>
                 
             </Grid>
         </Frame>
 
-        <Frame BackgroundColor="#1935ff" Grid.Row="1" Margin="20,10,20,10">
+        <Frame BackgroundColor="#1935ff" Grid.Row="1" Margin="20,10,20,10" Padding="0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -60,13 +60,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Data Final" TextColor="White" Grid.Row="0" Grid.Column="0" Margin="0,10,0,15"/>
+                <Label Text="Data Final" TextColor="White" Grid.Row="0" Grid.Column="0" Margin="10,10,0,15"/>
 
-                <DatePicker MinimumDate="01/01/2024" Grid.Row="0" Grid.Column="1" TextColor="White" Margin="0" Format="dd/MM" Date="{Binding SelectedDateFinal}"/>
+                <DatePicker MinimumDate="01/01/2024" Grid.Row="0" Grid.Column="1" TextColor="White" Margin="0" Format="dd/MM" Date="{Binding SelectedDateFinal}" HorizontalOptions="Center"/>
 
-                <Label Text="Hora Final" TextColor="White" Grid.Row="1" Grid.Column="0" Margin="0,10,0,15"/>
+                <Label Text="Hora Final" TextColor="White" Grid.Row="1" Grid.Column="0" Margin="10,10,0,15"/>
 
-                <TimePicker Grid.Row="1" Grid.Column="1" TextColor="White" Format="HH:mm" Time="{Binding SelectedTimeFinal}" />
+                <TimePicker Grid.Row="1" Grid.Column="1" TextColor="White" Format="HH:mm" Time="{Binding SelectedTimeFinal}" HorizontalOptions="Center" />
 
             </Grid>
         </Frame>
@@ -90,33 +90,33 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Text="Dinheiro" TextColor="White" Grid.Row="0" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="0" Grid.Column="1" Margin="0,5,0,15" Padding="0">
-                    <Label Text="{Binding Dinheiro, StringFormat='R$ {0}'}" TextColor="Black"  Margin="3" HorizontalOptions="Center"/>
+                <Frame Grid.Row="0" Grid.Column="1" Margin="0,5,0,10" Padding="0">
+                    <Label Text="{Binding Dinheiro, StringFormat='R$ {0:0.00}'}" TextColor="Black" Margin="1" HorizontalOptions="Center"/>
                 </Frame>
                 
                 <Label Text="Cartão de Crédito" TextColor="White" Grid.Row="1" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="1" Grid.Column="1" Margin="0,5,0,15" Padding="0">
-                    <Label Text="{Binding Credito, StringFormat='R$ {0}'}" TextColor="Black"  Margin="3" HorizontalOptions="Center"/>
+                <Frame Grid.Row="1" Grid.Column="1" Margin="0,5,0,10" Padding="0">
+                    <Label Text="{Binding Credito, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center" />
                 </Frame>
 
                 <Label Text="Cartão de Débito" TextColor="White" Grid.Row="2" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="2" Grid.Column="1" Margin="0,5,0,15" Padding="0">
-                    <Label Text="{Binding Debito, StringFormat='R$ {0}'}" TextColor="Black"  Margin="3" HorizontalOptions="Center"/>
+                <Frame Grid.Row="2" Grid.Column="1" Margin="0,5,0,10" Padding="0">
+                    <Label Text="{Binding Debito, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center"/>
                 </Frame>
 
                 <Label Text="Pix" TextColor="White" Grid.Row="3" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="3" Grid.Column="1" Margin="0,5,0,15" Padding="0">
-                    <Label Text="{Binding Pix, StringFormat='R$ {0}'}" TextColor="Black"  Margin="3" HorizontalOptions="Center"/>
+                <Frame Grid.Row="3" Grid.Column="1" Margin="0,5,0,10" Padding="0">
+                    <Label Text="{Binding Pix, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center"/>
                 </Frame>
                 
                 <Label Text="Outros" TextColor="White" Grid.Row="4" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="4" Grid.Column="1" Margin="0,5,0,15" Padding="0">
-                    <Label Text="{Binding Outros, StringFormat='R$ {0}'}" TextColor="Black"  Margin="3" HorizontalOptions="Center"/>
+                <Frame Grid.Row="4" Grid.Column="1" Margin="0,5,0,10" Padding="0">
+                    <Label Text="{Binding Outros, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center"/>
                 </Frame>
 
-                <Label Text="Lucro Total" TextColor="White" FontSize="Large"  Grid.Row="5" Grid.Column="0" Margin="0,5,0,15" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand"/>
-                <Frame Grid.Row="6" Grid.ColumnSpan="2" Margin="0,5,0,15" Padding="0">
-                    <Label Text="{Binding LucroTotal, StringFormat='R$ {0}'}" TextColor="Black"  Margin="3" HorizontalOptions="Center"/>
+                <Label Text="Lucro Total" TextColor="White" FontSize="Large"  Grid.Row="5" Grid.Column="0" Margin="0,0,0,15" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" Padding="0"/>
+                <Frame Grid.Row="6" Grid.ColumnSpan="2" Margin="0,5,0,10" Padding="0">
+                    <Label Text="{Binding LucroTotal, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center"/>
                 </Frame>
 
 

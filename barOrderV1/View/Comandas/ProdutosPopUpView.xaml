@@ -47,7 +47,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BackgroundColor="#1935ff" BorderColor="Black">
+                    <Frame BackgroundColor="#1935ff" BorderColor="Black" Margin="10">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width=".7*"/>
@@ -63,7 +63,7 @@
                             </Frame>
 
                             <Frame Grid.Column="1" Padding="0" BorderColor="Transparent">
-                                <Label Text="{Binding Preco, StringFormat='R${0}'}" HorizontalOptions="Center" />
+                                <Label Text="{Binding Preco, StringFormat='R$  {0:N2}'}" HorizontalOptions="Center" />
                             </Frame>
 
                             <Frame Grid.Column="3">

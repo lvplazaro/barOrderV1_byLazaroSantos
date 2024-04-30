@@ -121,7 +121,7 @@
 
                     <Label Text="Comandas Fechadas" TextColor="White" FontSize="Body" Grid.Row="0" Grid.Column="1" Margin="5,5,0,0" Padding="0"/>
 
-                    <Label Text="Através do menu lateral é possivel acessar a pagina de comandas fechadas. Em comandas fechadas é possivel acessa-las novamente para verificar quais produtos e sua quantidade foram consumidos pelo cliente." TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Margin="0,5,5,5" Padding="5"/>
+                    <Label Text="Através do menu lateral é possivel acessar a pagina de comandas fechadas. Em comandas fechadas é possivel acessa-las novamente para verificar quais produtos e suas respectivas quantidades foram consumidas pelo cliente." TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Margin="0,5,5,5" Padding="5"/>
 
                 </Grid>
             </ScrollView>
@@ -147,7 +147,7 @@
 
                     <Label Text="Relatório de lucros" TextColor="White" FontSize="Body" Grid.Row="0" Grid.Column="1" Margin="5,5,0,0" Padding="0"/>
 
-                    <Label Text="Em relatório de lucros, informe a data e hora inicial e final para filtrar os valores recebidos atraves de comandas fechadas no periodo selecionado." TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Margin="0,5,5,5" Padding="5"/>
+                    <Label Text="Em relatório de lucros, informe a data e hora inicial e final para filtrar os valores recebidos através de comandas fechadas no periodo selecionado." TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Margin="0,5,5,5" Padding="5"/>
 
                 </Grid>
             </ScrollView>

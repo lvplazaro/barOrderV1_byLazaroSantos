@@ -7,6 +7,7 @@
     xmlns:outros="clr-namespace:barOrderV1.View.Outros"
     BackgroundColor="DarkBlue"
     Shell.FlyoutBehavior="Flyout"
+    x:Name="MyAppShell"
     Title="barOrder">
 
     <Shell.FlyoutHeader>
@@ -15,14 +16,14 @@
        HeightRequest="150" 
        WidthRequest="150" 
        HorizontalOptions="CenterAndExpand"
-       Margin="10,40"/>
-            <Label Text="barOrder" FontSize="Title" HorizontalTextAlignment="Center" TextColor="#000659" Margin="10"/>
+       Margin="10,10"/>
+            <Label Text="barOrder" FontSize="Title" HorizontalTextAlignment="Center" TextColor="#000659" Margin="2,2,2,2"/>
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
 
-    <ShellContent Title="Comandas Abertas" Icon="comanda_aberta.svg"  
-        ContentTemplate="{DataTemplate local:PaginaInicialView}"
-        Route="MainPage" />
+    <ShellContent x:Name="MyMainPage" Title="Comandas Abertas" Icon="comanda_aberta.svg"
+    ContentTemplate="{DataTemplate local:PaginaInicialView}"
+    Route="MainPage" />
 
     <ShellContent Title="Comandas Fechadas" Icon="comanda_fechada.svg"
       ContentTemplate="{DataTemplate local:ComandasFechadasView}"
@@ -36,6 +37,10 @@
           ContentTemplate="{DataTemplate local:RelatorioView}"
           Route="RelatorioView"/>
 
+    <ShellContent Title="Configurações" Icon="config.png"
+      ContentTemplate="{DataTemplate outros:ConfigView}"
+      Route="ConfigView"/>
+
     <ShellContent Title="Ajuda" Icon="ajuda.png"
       ContentTemplate="{DataTemplate outros:AjudaView}"
       Route="AjudaView"/>
@@ -43,6 +48,10 @@
     <ShellContent Title="Sobre" Icon="sobre.png"
       ContentTemplate="{DataTemplate outros:SobreView}"
       Route="SobreView"/>
+
+    <FlyoutItem Route="Login" x:Name="MyLoginPage" IsEnabled="False" IsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate outros:LoginView}" />
+    </FlyoutItem>
 
     <Shell.FlyoutFooter>
         <VerticalStackLayout>

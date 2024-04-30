@@ -26,7 +26,7 @@
         <SearchBar SearchCommand="{Binding SearchBarPaginaInicialCommand}"
                                       SearchCommandParameter="{Binding NomePesquisado}" Text="{Binding NomePesquisado}" Grid.Row="0" Placeholder="Nome do cliente ..." Margin="5" BackgroundColor="#00098c" TextColor="White" PlaceholderColor="White" />
 
-        <CollectionView x:Name="Comandas" ItemsSource="{Binding Comandas}" Grid.Row="1" EmptyView="Adicione comandas clicando no botão abaixo">
+        <CollectionView x:Name="Comandas" ItemsSource="{Binding Comandas}" Grid.Row="1" EmptyView="Adicione comandas clicando no botão abaixo" Grid.ColumnSpan="2" HorizontalOptions="Center">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" Span="2" />
             </CollectionView.ItemsLayout>

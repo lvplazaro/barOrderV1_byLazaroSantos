@@ -10,6 +10,7 @@ using barOrderV1.ViewModel.Comandas;
 using barOrderV1.Model;
 using barOrderV1.Model.Enums;
 using barOrderV1.View.Outros;
+using barOrderV1.ViewModel.Outros;
 
 namespace barOrderV1
 {
@@ -58,7 +59,8 @@ namespace barOrderV1
             builder.Services.AddTransient<RelatorioView, RelatorioViewModel>();
 
 
-
+            builder.Services.AddTransient<ConfigView, ConfigViewModel>();
+            builder.Services.AddTransient<LoginView, LoginViewModel>();
 
 
 #if DEBUG

@@ -54,8 +54,8 @@
             
             
             
-            <Label Text="{Binding ComandaFechamento.DataAbertura, StringFormat='Data de Abertura: {0:dd/MM HH:mm}'}" Grid.Column="1" Grid.Row="1" Margin="0,10" Padding="0"/>
-            <Label Text="{Binding ComandaFechamento.DataFechamento, StringFormat='Data de fechamento: {0:dd/MM HH:mm}'}" Grid.Column="1" Grid.Row="2" Margin="1" Padding="0"/>
+            <Label Text="{Binding ComandaFechamento.DataAbertura, StringFormat='Data de Abertura: {0:dd/MM HH:mm}'}" Grid.Column="1" Grid.Row="1" Margin="0,8" Padding="0"/>
+            <Label Text="{Binding ComandaFechamento.DataFechamento, StringFormat='Data de fechamento: {0:dd/MM HH:mm}'}" Grid.Column="1" Grid.Row="2" Margin="0,8" Padding="0"/>
 
             <Label Text="{Binding ComandaFechamento.Total, StringFormat='Total: {0:C}'}" Grid.Column="1" Grid.Row="3" Margin="5" Padding="0" FontSize="Large"/>
         </Grid>
@@ -123,10 +123,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Frame Grid.Column="0" Grid.Row="0" Margin="10" Padding="5">
-                    <Label Text="Forma de pagamento"  Margin="5"/>
+                    <Label Text="Forma de pagamento"  Margin="5,2"/>
                 </Frame>
 
-                <Frame Grid.Column="1" Grid.Row="0" Margin="10" Padding="5">
+                <Frame Grid.Column="1" Grid.Row="0" Margin="10" Padding="0">
                     <Picker Title="Pagamento" x:Name="CategoriaPicker" SelectedItem="{Binding SelectedFormaPagamento}" WidthRequest="85">
                         <Picker.ItemsSource>
                             <Binding Path="CategoriasList" />
@@ -138,7 +138,7 @@
                     <Label Text="Valor recebido"  Margin="5"/>
                 </Frame>
 
-                <Frame Grid.Column="1" Grid.Row="1" Margin="10" Padding="5">
+                <Frame Grid.Column="1" Grid.Row="1" Margin="10" Padding="-5">
                     <Entry Placeholder="0" Margin="0" Keyboard="Numeric" Text="{Binding ValorRecebido,Mode=TwoWay}" HorizontalOptions="Center" VerticalOptions="Center"/>
                 </Frame>
 

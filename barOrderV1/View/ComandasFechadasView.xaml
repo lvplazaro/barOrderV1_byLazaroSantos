@@ -20,7 +20,7 @@
         <SearchBar SearchCommand="{Binding SearchBarPaginaInicialCommand}"
                               SearchCommandParameter="{Binding NomePesquisado}" Text="{Binding NomePesquisado}" Grid.Row="0" Placeholder="Nome do cliente ..." Margin="5" BackgroundColor="#00098c" TextColor="White" PlaceholderColor="White" />
         
-        <CollectionView ItemsSource="{Binding ComandasFechadas}" Grid.Row="1">
+        <CollectionView ItemsSource="{Binding ComandasFechadas}" Grid.Row="1" EmptyView="Nenhuma comanda fechada">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" Span="2" />
             </CollectionView.ItemsLayout>

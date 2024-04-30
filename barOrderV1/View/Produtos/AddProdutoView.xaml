@@ -12,71 +12,91 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
-    <ContentPage.Resources>
-        <Style TargetType="Frame">
-            <Setter Property="Margin" Value="2" />
-            <Setter Property="CornerRadius" Value="35"/>
-            <Setter Property="BackgroundColor" Value="#1935ff" />
-            <Setter Property="BorderColor" Value="Black" />
-            <Setter Property="HeightRequest" Value="30" />
-            <Setter Property="WidthRequest" Value="300" />
-            <Setter Property="Padding" Value="0" />
-        </Style>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
 
-        <Style TargetType="Label">
-            <Setter Property="HorizontalTextAlignment" Value="Center" />
-            <Setter Property="VerticalTextAlignment" Value="Center" />
-            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="FontSize" Value="Small" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="Margin" Value="1,1,0.5,1" />
-        </Style>
-    </ContentPage.Resources>
+        <Frame Grid.Row="0" Margin="10" BackgroundColor="#1935ff" Padding="10,0,5,10">
 
-    <VerticalStackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".15*"/>
+                    <RowDefinition Height=".15*"/>
+                    <RowDefinition Height=".15*"/>
+                    <RowDefinition Height=".15*"/>
+                    <RowDefinition Height=".15*"/>
+                    <RowDefinition Height=".40*"/>
+                </Grid.RowDefinitions>
 
-        <StackLayout VerticalOptions="FillAndExpand">
-            <Frame Margin="0,10">
-                <Label Text="Nome" HorizontalTextAlignment="Center"/>
-            </Frame>
-            <Entry Placeholder="Informe o nome do produto" x:Name="NomeEntry" Text="{Binding Nome, Mode=TwoWay}" WidthRequest="330"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
 
+                <Label Text="Nome" TextColor="White" Grid.Row="0" Grid.Column="0" Margin="0,5,0,15" VerticalOptions="Center"/>
+                <Frame Grid.Row="0" Grid.Column="1" Margin="0,0,10,5" Padding="0" MaximumHeightRequest="50">
+                    <Entry Placeholder="Informe o nome do produto" Text="{Binding Nome, Mode=TwoWay}" Margin="0"/>
+                </Frame>
 
-            <Frame>
-                <Label Text="Preço" HorizontalTextAlignment="Center"/>
-            </Frame>
-            <Entry Placeholder="Informe o preço do produto" x:Name="PreçoEntry" Text="{Binding Preco,Mode=TwoWay}" WidthRequest="330" Keyboard="Numeric"/>
+                <Label Text="Preço" TextColor="White" Grid.Row="1" Grid.Column="0" Margin="0,5,0,15" VerticalOptions="Center"/>
+                <Frame Grid.Row="1" Grid.Column="1" Margin="0,0,10,5" Padding="0" MaximumHeightRequest="50">
+                    <Entry Placeholder="Informe o preço do produto" Text="{Binding Preco,Mode=TwoWay}" Keyboard="Numeric"/>
+                </Frame>
 
-            <Frame>
-                <Label Text="Categoria do produto" HorizontalTextAlignment="Center"/>
-            </Frame>
+                <Label Text="Categoria" TextColor="White" Grid.Row="2" Grid.Column="0" Margin="0,5,0,15" VerticalOptions="Center"/>
 
+                <Frame Grid.Row="2" Grid.Column="1" Margin="0,0,10,5" Padding="0" MaximumHeightRequest="50">
+                    <Picker Title="Categoria" x:Name="CategoriaPicker" SelectedItem="{Binding SelectedCategoriaProduto}">
+                        <Picker.ItemsSource>
+                            <Binding Path="CategoriasList" />
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Frame>
 
-            <Picker Title="Categoria" x:Name="CategoriaPicker" SelectedItem="{Binding SelectedCategoriaProduto}" WidthRequest="330">
-                <Picker.ItemsSource>
-                    <Binding Path="CategoriasList" />
-                </Picker.ItemsSource>
-            </Picker>
+                <Label Text="Em Estoque" TextColor="White" Grid.Row="3" Grid.Column="0" Margin="0,5,0,15" VerticalOptions="Center"/>
+                <Frame Grid.Row="3" Grid.Column="1" Margin="0,0,10,5" Padding="0" MaximumHeightRequest="50">
+                    <Entry Placeholder="Informe a quantidade disponível em estoque" Text="{Binding QuantidadeEstoque,Mode=TwoWay}" Keyboard="Numeric" />
+                </Frame>
 
-            <Frame>
-                <Label Text="Quantidade em estoque" HorizontalTextAlignment="Center"/>
-            </Frame>
-            <Entry Placeholder="Informe a quantidade disponível em estoque" x:Name="QteEstoqueEntry" Text="{Binding QuantidadeEstoque,Mode=TwoWay}" WidthRequest="330" Keyboard="Numeric" />
-
-            <Frame>
-                <Label Text="Informe a quantidade crítica para esse produto" HorizontalTextAlignment="Center"/>
-            </Frame>
-            <Entry Placeholder="Quantidade Crítica" x:Name="QteCriticaEntry" Text="{Binding QuantidadeCritica,Mode=TwoWay}" WidthRequest="330" Keyboard="Numeric"/>
-
-            <Button Text="Salvar" Command="{Binding AddProdutoCommand}" Margin="5,60" VerticalOptions="End" BackgroundColor="#00098c"/>
-        </StackLayout>
+                <Label Text="Estoque critico" TextColor="White" Grid.Row="4" Grid.Column="0" Margin="0,5,0,15" VerticalOptions="Center"/>
+                <Frame Grid.Row="4" Grid.Column="1" Margin="0,0,10,5" Padding="0" MaximumHeightRequest="50">
+                    <Entry Placeholder="Informe a quantidade disponível em estoque" Text="{Binding QuantidadeCritica,Mode=TwoWay}" Keyboard="Numeric" />
+                </Frame>
 
 
-    </VerticalStackLayout>
 
+            </Grid>
+            
+        </Frame>
+
+
+
+
+
+        <Frame BorderColor="Black" HasShadow="True" Padding="8" Grid.Row="1" Margin="10" BackgroundColor="#00098c" VerticalOptions="End" CornerRadius="15">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding AddProdutoCommand}" />
+
+            </Frame.GestureRecognizers>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".8*"/>
+                    <ColumnDefinition Width=".2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Adicionar produto" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Margin="-2" Grid.ColumnSpan="2" Padding="0"/>
+                <Image Source="adicionargo.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Grid.Column="1" HorizontalOptions="End"/>
+            </Grid>
+        </Frame>
+
+
+    </Grid>
+
+    
 
 
 
 
 </ContentPage>
+

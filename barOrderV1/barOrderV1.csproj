@@ -61,7 +61,10 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appconfg.svg" />
+	  <None Remove="Resources\Images\bdo.jpg" />
+	  <None Remove="Resources\Images\config.jpg" />
 	  <None Remove="Resources\Images\logo.svg" />
+	  <None Remove="Resources\Images\out.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -102,6 +105,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Outros\AjudaView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Outros\ConfigView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Outros\LoginView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Outros\SobreView.xaml">
