@@ -65,7 +65,7 @@ namespace barOrderV1.ViewModel
                 await _produtoService.InitializeAsync();
                 await _produtoService.UpdateProduto(ProdutoEditavel);
 
-                await Shell.Current.DisplayAlert("Sucesso", "Produto Editado com sucesso!", "Ok");
+                await Shell.Current.DisplayAlert("Sucesso", "Produto editado com sucesso!", "Ok");
 
                 await Shell.Current.GoToAsync("../..");
             }

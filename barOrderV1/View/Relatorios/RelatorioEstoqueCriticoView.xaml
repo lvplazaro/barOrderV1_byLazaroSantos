@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="barOrderV1.View.Relatorios.RelatorioEstoqueCriticoView"
+             Title="RelatorioEstoqueCriticoView">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label Text="Estoque Critico" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.1*"/>
+
+        </Grid.RowDefinitions>
+
+        <Frame Grid.Row="0" Padding="0" Margin="0" CornerRadius="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Picker Title="Categoria de produto" TitleColor="White" TextColor="White" SelectedItem="{Binding CategoriaSelecionada}" Margin="10"  BackgroundColor="#00098c" Grid.RowSpan="2" Grid.Column="0">
+                    <Picker.ItemsSource>
+                        <Binding Path="CategoriasList" />
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="Categoria" Grid.Column="1" Grid.Row="0" Margin="5,10,5,2" Padding="0" FontSize="Medium"/>
+                <Label Text="{Binding CategoriaSelecionada}" Grid.Column="1" Grid.Row="2" FontSize="Medium" Margin="5,5,5,2"/>
+
+
+            </Grid>
+        </Frame>
+
+
+        <CollectionView ItemsSource="{Binding ProdutosCriticos}" SelectionMode="None" Background="Azure" EmptyView="Nenhum produto para exibir" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5" Padding="0" BorderColor="Red" BackgroundColor="Red">
+                        <StackLayout Margin="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.6*"/>
+                                    <ColumnDefinition Width="0.4*"/>
+
+
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Produto" FontSize="Small" TextColor="White" Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand" Margin="2"/>
+                                <Label Text="{Binding Nome}" FontSize="Small" TextColor="White" Grid.Column="1" Grid.Row="0" HorizontalOptions="StartAndExpand" Margin="2"/>
+
+                                <Label Text="Preço Un." FontSize="Small" TextColor="White" Grid.Column="0" Grid.Row="1" HorizontalOptions="StartAndExpand" Margin="2"/>
+                                <Label Text="{Binding Preco, StringFormat='R$ {0:N2}'}" FontSize="Small" TextColor="White" Grid.Column="1" Grid.Row="1" HorizontalOptions="StartAndExpand" Margin="2"/>
+
+                                <Label Text="Qtd. Estoque" FontSize="Small" TextColor="White" Grid.Column="0" Grid.Row="2" HorizontalOptions="StartAndExpand" Margin="2"/>
+                                <Label Text="{Binding QuantidadeEstoque}" FontSize="Small" TextColor="White" Grid.Column="1" Grid.Row="2" HorizontalOptions="StartAndExpand" Margin="2"/>
+
+                                <Label Text="Estoque crítico" FontSize="Small" TextColor="White" Grid.Column="0" Grid.Row="3" HorizontalOptions="StartAndExpand" Margin="2"/>
+                                <Label Text="{Binding QuantidadeCritica}" FontSize="Small" TextColor="White" Grid.Column="1" Grid.Row="3" HorizontalOptions="StartAndExpand" Margin="2"/>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+
+
+
+
+
+
+        <Frame BorderColor="Black" HasShadow="True" Padding="8" Grid.Row="2" Margin="10" BackgroundColor="#00098c" VerticalOptions="End" CornerRadius="15">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CalcProdEstCriticoCommand}"/>
+
+            </Frame.GestureRecognizers>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".8*"/>
+                    <ColumnDefinition Width=".2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Verificar produtos" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Margin="-2" Grid.ColumnSpan="2" Padding="0"/>
+                <Image Source="adicionargo.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Grid.Column="1" HorizontalOptions="End"/>
+            </Grid>
+        </Frame>
+    </Grid>
+
+
+
+</ContentPage>

@@ -11,6 +11,8 @@ using barOrderV1.Model;
 using barOrderV1.Model.Enums;
 using barOrderV1.View.Outros;
 using barOrderV1.ViewModel.Outros;
+using barOrderV1.View.Relatorios;
+using barOrderV1.ViewModel.Relatorios;
 
 namespace barOrderV1
 {
@@ -50,17 +52,27 @@ namespace barOrderV1
             builder.Services.AddTransient<ProdutosPopUpView, ProdutosPopUpViewModel>();
             builder.Services.AddTransient<FechamentoDeComandaView, FechamentoDeComandaViewModel>();
             builder.Services.AddTransient<ComandaFechadaView, ComandaFechadaViewModel>();
+            builder.Services.AddTransient<ComandasFechadasView, ComandasFechadasViewModel>();
+
             builder.Services.AddTransient<AjudaView>();
             builder.Services.AddTransient<SobreView>();
 
 
 
-            builder.Services.AddTransient<ComandasFechadasView, ComandasFechadasViewModel>();
-            builder.Services.AddTransient<RelatorioView, RelatorioViewModel>();
-
-
             builder.Services.AddTransient<ConfigView, ConfigViewModel>();
             builder.Services.AddTransient<LoginView, LoginViewModel>();
+
+            builder.Services.AddTransient<RelatoriosView, RelatoriosViewModel>();
+
+
+            builder.Services.AddTransient<RelatorioFaturamentoView, RelatorioFaturamentoViewModel>();
+            builder.Services.AddTransient<RelatorioProdutosVendidosView, RelatorioProdutosVendidosViewModel>();
+            builder.Services.AddTransient<RelatorioFaturamentoEsperadoView, RelatorioFaturamentoEsperadoViewModel>();
+            builder.Services.AddTransient<RelatorioEstoqueCriticoView, RelatorioEstoqueCriticoViewModel>();
+
+
+
+
 
 
 #if DEBUG

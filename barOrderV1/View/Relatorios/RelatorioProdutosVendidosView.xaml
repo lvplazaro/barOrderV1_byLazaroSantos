@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="barOrderV1.View.RelatorioView"
-             xmlns:vm="clr-namespace:barOrderV1.ViewModel"
-             Title="RelatorioView">
+             x:Class="barOrderV1.View.Relatorios.RelatorioProdutosVendidosView"
+             xmlns:vm="clr-namespace:barOrderV1.ViewModel.Relatorios"
+             Title="RelatorioProdutosVendidosView">
 
     <Shell.TitleView>
         <HorizontalStackLayout VerticalOptions="Fill">
-            <Label Text="Relatório de Lucros" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
+            <Label Text="Mais Vendidos" TextColor="White" VerticalTextAlignment="Center" VerticalOptions="Center" HeightRequest="50" FontSize="Large" />
         </HorizontalStackLayout>
     </Shell.TitleView>
 
     <ContentPage.BindingContext>
-        <vm:RelatorioViewModel/>
+        <vm:RelatorioProdutosVendidosViewModel/>
     </ContentPage.BindingContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -44,7 +44,7 @@
                 <Label Text="Hora Inicial" TextColor="White" Grid.Row="1" Grid.Column="0" Margin="10,10,0,15"/>
 
                 <TimePicker Grid.Row="1" Grid.Column="1" TextColor="White" Format="HH:mm" Time="{Binding SelectedTimeInicial}" HorizontalOptions="Center"/>
-                
+
             </Grid>
         </Frame>
 
@@ -74,65 +74,53 @@
         <Frame BackgroundColor="#1935ff" Grid.Row="2" Margin="20,10,20,10">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-
                 </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Label Text="Produtos mais vendidos" Grid.Row="0" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="Large" Margin="5"/>
+                <CollectionView ItemsSource="{Binding MaisVendidos}" EmptyView="Nenhum produto vendido" HorizontalOptions="CenterAndExpand" Grid.Row="1">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="White" BorderColor="Black" Margin="2" Padding="2">
 
-                <Label Text="Dinheiro" TextColor="White" Grid.Row="0" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="0" Grid.Column="1" Margin="0,5,0,10" Padding="0">
-                    <Label Text="{Binding Dinheiro, StringFormat='R$ {0:0.00}'}" TextColor="Black" Margin="1" HorizontalOptions="Center"/>
-                </Frame>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".55*"/>
+                                        <ColumnDefinition Width=".2*"/>
+                                        <ColumnDefinition Width=".2*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Frame Grid.Column="0" Margin="5" Padding="0" BorderColor="Transparent" >
+                                        <Label Text="{Binding Nome}"  TextColor="Black" FontSize="Small"/>
+                                    </Frame>
+
+                                    <Frame Grid.Column="1" Margin="5" Padding="0" BorderColor="Black">
+                                        <Label Text="{Binding QuantidadeVendida}" HorizontalOptions="Center" TextColor="Black" />
+                                    </Frame>
+
+                                    <Frame Grid.Column="2" Margin="0,5,5,5" Padding="0" BorderColor="Transparent">
+                                        <Label Text="un." HorizontalOptions="Center" TextColor="Black" />
+                                    </Frame>
+
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
                 
-                <Label Text="Cartão de Crédito" TextColor="White" Grid.Row="1" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="1" Grid.Column="1" Margin="0,5,0,10" Padding="0">
-                    <Label Text="{Binding Credito, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center" />
-                </Frame>
-
-                <Label Text="Cartão de Débito" TextColor="White" Grid.Row="2" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="2" Grid.Column="1" Margin="0,5,0,10" Padding="0">
-                    <Label Text="{Binding Debito, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center"/>
-                </Frame>
-
-                <Label Text="Pix" TextColor="White" Grid.Row="3" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="3" Grid.Column="1" Margin="0,5,0,10" Padding="0">
-                    <Label Text="{Binding Pix, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center"/>
-                </Frame>
-                
-                <Label Text="Outros" TextColor="White" Grid.Row="4" Grid.Column="0" Margin="0,5,0,15"/>
-                <Frame Grid.Row="4" Grid.Column="1" Margin="0,5,0,10" Padding="0">
-                    <Label Text="{Binding Outros, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center"/>
-                </Frame>
-
-                <Label Text="Lucro Total" TextColor="White" FontSize="Large"  Grid.Row="5" Grid.Column="0" Margin="0,0,0,15" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" Padding="0"/>
-                <Frame Grid.Row="6" Grid.ColumnSpan="2" Margin="0,5,0,10" Padding="0">
-                    <Label Text="{Binding LucroTotal, StringFormat='R$ {0:0.00}'}" TextColor="Black"  Margin="1" HorizontalOptions="Center"/>
-                </Frame>
-
-
-
-
-
-
-
-
-
             </Grid>
+            
         </Frame>
+
 
         <Frame BorderColor="Black" HasShadow="True" Padding="8" Grid.Row="4" Margin="10" BackgroundColor="#00098c" VerticalOptions="End" CornerRadius="15">
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding CalculoDeLucroCommand}" />
+                <TapGestureRecognizer Command="{Binding CalculoProdutosCommand}" />
 
             </Frame.GestureRecognizers>
             <Grid>
@@ -140,12 +128,10 @@
                     <ColumnDefinition Width=".8*"/>
                     <ColumnDefinition Width=".2*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Calcular Valores" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Margin="-2" Grid.ColumnSpan="2" Padding="0"/>
+                <Label Text="Verificar Produtos" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Margin="-2" Grid.ColumnSpan="2" Padding="0"/>
                 <Image Source="adicionargo.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Grid.Column="1" HorizontalOptions="End"/>
             </Grid>
         </Frame>
-
-
 
 
 

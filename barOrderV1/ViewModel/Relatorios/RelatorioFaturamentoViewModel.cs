@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace barOrderV1.ViewModel
 {
-    public partial class RelatorioViewModel : BaseViewModel
+    public partial class RelatorioFaturamentoViewModel : BaseViewModel
     {
         private readonly IComandaService _comandaService;
 
-        public RelatorioViewModel(IComandaService comandaService)
+        public RelatorioFaturamentoViewModel(IComandaService comandaService)
         {
             SelectedDateInicial = DateTime.Today;
             SelectedDateFinal = DateTime.Today;
@@ -26,7 +26,7 @@ namespace barOrderV1.ViewModel
             Task.Run(GetComandasFechadasAsync);
         }
 
-        public RelatorioViewModel()
+        public RelatorioFaturamentoViewModel()
         {
             
         }

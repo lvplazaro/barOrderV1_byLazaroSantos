@@ -33,9 +33,9 @@
               ContentTemplate="{DataTemplate local:EstoqueView}"
               Route="EstoqueView"/>
 
-    <ShellContent Title="Relatório de Lucros" Icon="relatorio_lucros.png"
-          ContentTemplate="{DataTemplate local:RelatorioView}"
-          Route="RelatorioView"/>
+    <ShellContent Title="Relatórios" Icon="relatorio_lucros.png"
+          ContentTemplate="{DataTemplate outros:RelatoriosView}"
+          Route="RelatoriosView"/>
 
     <ShellContent Title="Configurações" Icon="config.png"
       ContentTemplate="{DataTemplate outros:ConfigView}"

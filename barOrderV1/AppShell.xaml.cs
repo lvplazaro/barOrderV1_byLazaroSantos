@@ -1,6 +1,7 @@
 ﻿using barOrderV1.View;
 using barOrderV1.View.Comandas;
 using barOrderV1.View.Outros;
+using barOrderV1.View.Relatorios;
 
 namespace barOrderV1
 {
@@ -32,9 +33,18 @@ namespace barOrderV1
             Routing.RegisterRoute(nameof(FechamentoDeComandaView), typeof(FechamentoDeComandaView));
             Routing.RegisterRoute(nameof(ComandasFechadasView), typeof(ComandasFechadasView));
             Routing.RegisterRoute(nameof(ComandaFechadaView), typeof(ComandaFechadaView));
-            Routing.RegisterRoute(nameof(RelatorioView), typeof(RelatorioView));
             Routing.RegisterRoute(nameof(AjudaView), typeof(AjudaView));
             Routing.RegisterRoute(nameof(SobreView), typeof(SobreView));
+
+            Routing.RegisterRoute(nameof(RelatoriosView), typeof(RelatoriosView));
+
+            Routing.RegisterRoute(nameof(RelatorioFaturamentoView), typeof(RelatorioFaturamentoView));
+            Routing.RegisterRoute(nameof(RelatorioProdutosVendidosView), typeof(RelatorioProdutosVendidosView));
+            Routing.RegisterRoute(nameof(RelatorioFaturamentoEsperadoView), typeof(RelatorioFaturamentoEsperadoView));
+            Routing.RegisterRoute(nameof(RelatorioEstoqueCriticoView), typeof(RelatorioEstoqueCriticoView));
+
+
+
 
 
             Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));

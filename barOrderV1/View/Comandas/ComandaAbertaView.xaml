@@ -66,7 +66,7 @@
         </Grid>
 
         <Frame Margin="5" BackgroundColor="#1935ff" Grid.Row="1" Padding="5">
-            <CollectionView ItemsSource="{Binding ProdutosNaComanda}" EmptyView="Sem produtos cadastrados" HorizontalOptions="CenterAndExpand">
+            <CollectionView ItemsSource="{Binding ProdutosNaComanda}" EmptyView="Nenhum produto adicionado" HorizontalOptions="CenterAndExpand">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
